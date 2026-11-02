@@ -1,0 +1,181 @@
+{
+  "lang": "en",
+  "dir": "ltr",
+  "langLabel": "EN",
+  "meta": {
+    "title": "Tzach Zrihan | Wedding Planner Israel — Precision, Savings & Peace of Mind",
+    "desc": "Tzach Zrihan is an independent wedding producer in Israel — the happiest one you'll ever meet. Full planning 5–10 months before the big day, real savings, total peace of mind on the day itself.",
+    "og_title": "Tzach Zrihan | Wedding Planner Israel",
+    "og_desc": "High-precision wedding production in Israel, with genuine savings and a whole lot of warmth.",
+    "keywords": "wedding planner Israel, wedding producer Israel, wedding coordinator Israel, Tzach Zrihan"
+  },
+  "skip": "Skip",
+  "nav": {
+    "story": "About",
+    "services": "Services",
+    "weddings": "Weddings",
+    "testimonials": "Reviews",
+    "faq": "FAQ",
+    "contact": "Let's Meet"
+  },
+  "logo": {
+    "name": "TZACH ZRIHAN",
+    "sub": "WEDDING PRODUCTIONS"
+  },
+  "hero": {
+    "tag": "WEDDING PRODUCTIONS · ISRAEL",
+    "h1": "The wedding you always dreamed of,\nwithout the stress.",
+    "cta": "Let's Meet"
+  },
+  "intro_text": "WEDDING PRODUCTIONS · ISRAEL",
+  "manifesto": {
+    "tag": "About",
+    "h2": "Just engaged?\nExcited — and completely lost.",
+    "body": "Everyone gives you different advice, and you have no idea where to start. I bring order, savings and a calm mind — with a lot of love and real friendship between me and the couples I work with. Because by the end, I'm not just your wedding producer. I'm your friend through the whole process.",
+    "link": "Read more about me"
+  },
+  "promises": {
+    "tag": "Three Promises",
+    "items": [
+      {
+        "num": "001",
+        "label": "DIYUK",
+        "title": "Precision",
+        "body": "High-precision production — every detail, every vendor, every minute of the evening. Nothing falls through the cracks."
+      },
+      {
+        "num": "002",
+        "label": "HISSAHON",
+        "title": "Savings",
+        "body": "I won't let you pay for what you don't need. We negotiate with vendors together and protect your budget."
+      },
+      {
+        "num": "003",
+        "label": "ROSH SHAKET",
+        "title": "Peace of Mind",
+        "body": "On your wedding day — I manage everything. You dance, you celebrate. That's my job."
+      }
+    ]
+  },
+  "stats": {
+    "tag": "By the Numbers",
+    "h2": "Real savings.\nReal time together.\nMemories for life.",
+    "items": [
+      { "value": "150+", "label": "Weddings produced" },
+      { "value": "5–10", "label": "Months of planning" },
+      { "value": "20–40%", "label": "Average savings" },
+      { "value": "100%", "label": "Happy couples" }
+    ],
+    "note": "* Numbers to be confirmed by the client before launch."
+  },
+  "process": {
+    "tag": "How It Works",
+    "h2": "Four steps\nto the wedding you always wanted.",
+    "steps": [
+      {
+        "num": "01",
+        "title": "First meeting",
+        "body": "We define your dream, your budget, and what truly matters to you."
+      },
+      {
+        "num": "02",
+        "title": "Venue & Vendors",
+        "body": "I guide you, negotiate on your behalf, and make sure you don't pay a single unnecessary shekel."
+      },
+      {
+        "num": "03",
+        "title": "Planning & Follow-up",
+        "body": "Months of structured planning — evening schedule, menu, timeline, chuppah briefing."
+      },
+      {
+        "num": "04",
+        "title": "Wedding Day",
+        "body": "I arrive first and leave last. You enjoy every moment. Everything is in good hands."
+      }
+    ]
+  },
+  "details": {
+    "h2": "Noticing the details\nyou'd never think of.",
+    "body": "Who takes care of the personal items you brought from home? Who makes sure the chuppah briefing goes exactly as planned? That's what I love doing best."
+  },
+  "weddings_section": {
+    "tag": "Weddings",
+    "h2": "Every wedding,\na different story.",
+    "months_label": "months of planning",
+    "view_more": "View all weddings",
+    "couples": [
+      { "id": "shir-tal", "names": "Shir & Tal", "location": "Central Israel", "months": 8 },
+      { "id": "eden-tevel", "names": "Eden & Tevel", "location": "Northern Israel", "months": 10 },
+      { "id": "yuval-idan", "names": "Yuval & Idan", "location": "Israel", "months": 5 },
+      { "id": "limor-oded", "names": "Limor & Oded", "location": "Poleg Beach, Netanya", "months": 8 },
+      { "id": "sivan-daniel", "names": "Sivan & Daniel", "location": "Israel", "months": 6 },
+      { "id": "ofir-or", "names": "Ofir & Or", "location": "Israel", "months": 7 }
+    ]
+  },
+  "testimonials": {
+    "tag": "Testimonials",
+    "h2": "What they say.",
+    "placeholder": "<!-- Add real testimonials from couples here -->"
+  },
+  "bts": {
+    "tag": "Behind the Scenes",
+    "h2": "Me and your parents\nare going to be friends.",
+    "body": "A lot of humor, a lot of love, and details you'd never think of on your own. That's what I bring."
+  },
+  "faq": {
+    "tag": "FAQ",
+    "h2": "Everything you wanted\nto ask.",
+    "items": [
+      {
+        "q": "Why do I need an independent wedding producer?",
+        "a": "An independent wedding producer (מפיק חתונות חיצוני) works for you — not for the venue. Unlike the in-house coordinator provided by the hall, I'm entirely on your side: I negotiate vendors, manage your budget, and am present on the day itself to make sure everything goes exactly as planned. <!-- To be completed with client's approved answer -->"
+      },
+      {
+        "q": "How much does it cost?",
+        "a": "<!-- To be completed with client's approved answer -->"
+      },
+      {
+        "q": "How far in advance should I contact you?",
+        "a": "The sooner the better. I accompany couples 5 to 10 months before their wedding, sometimes more. Early planning means more choices, better deals, and far less stress."
+      },
+      {
+        "q": "How do you help us save money?",
+        "a": "<!-- To be completed with client's approved answer -->"
+      },
+      {
+        "q": "Do you work with small weddings too?",
+        "a": "<!-- To be completed with client's approved answer -->"
+      }
+    ]
+  },
+  "contact": {
+    "tag": "Let's Meet",
+    "h2": "Let's talk\nabout your wedding.",
+    "body": "A first meeting — no commitment, lots of smiles.",
+    "fields": {
+      "bride": "Bride's name",
+      "groom": "Groom's name",
+      "date": "Approximate date",
+      "region": "Region / city",
+      "guests": "Number of guests",
+      "budget": "Approximate budget",
+      "venue": "Venue already booked?",
+      "venue_yes": "Yes",
+      "venue_no": "Not yet",
+      "message": "Tell me a little about you",
+      "submit": "Send via WhatsApp"
+    },
+    "wa_message": "Hi Tzach! We're {bride} & {groom}, getting married around {date} in {region}. {guests} guests, budget {budget}. Venue: {venue}. {message}"
+  },
+  "footer": {
+    "tagline": "The happiest wedding producer you'll ever meet.",
+    "legal": "Privacy Policy",
+    "rights": "All rights reserved"
+  },
+  "alts": {
+    "portrait": "Tzach Zrihan, wedding producer",
+    "hero": "A beautiful wedding in Israel",
+    "logo": "Tzach Zrihan — Wedding Productions"
+  },
+  "wa_float_label": "Write to me"
+}

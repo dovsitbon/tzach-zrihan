@@ -1,0 +1,181 @@
+{
+  "lang": "fr",
+  "dir": "ltr",
+  "langLabel": "FR",
+  "meta": {
+    "title": "Tzach Zrihan | Organisateur de mariage en Israël — Précision, économies, sérénité",
+    "desc": "Tzach Zrihan est un coordinateur de mariage indépendant en Israël — le plus joyeux que vous rencontrerez. Suivi complet 5 à 10 mois, vraies économies, tranquillité totale le jour J.",
+    "og_title": "Tzach Zrihan | Organisateur de mariage Israël",
+    "og_desc": "Organisation de mariage haute précision en Israël, avec de vraies économies et beaucoup de chaleur.",
+    "keywords": "organisateur mariage Israël, wedding planner Israël, coordinateur mariage Israël, Tzach Zrihan, mariage destination Israël"
+  },
+  "skip": "Passer",
+  "nav": {
+    "story": "Mon histoire",
+    "services": "Services",
+    "weddings": "Mariages",
+    "testimonials": "Avis",
+    "faq": "FAQ",
+    "contact": "On se rencontre"
+  },
+  "logo": {
+    "name": "TZACH ZRIHAN",
+    "sub": "WEDDING PRODUCTIONS"
+  },
+  "hero": {
+    "tag": "WEDDING PRODUCTIONS · ISRAËL",
+    "h1": "Le mariage dont vous avez toujours rêvé,\nsans le stress.",
+    "cta": "On se rencontre"
+  },
+  "intro_text": "WEDDING PRODUCTIONS · ISRAËL",
+  "manifesto": {
+    "tag": "Mon histoire",
+    "h2": "Vous venez de vous fiancer ?\nL'émotion monte, et le brouillard aussi.",
+    "body": "Tout le monde vous donne un conseil différent, et vous ne savez pas par où commencer. Je suis là pour apporter de l'ordre, des économies et la sérénité d'esprit que vous méritez — avec beaucoup d'amour et une vraie amitié entre moi et les couples. Parce qu'à la fin, je ne suis pas seulement votre organisateur. Je suis votre ami tout au long de ce chemin.\n\nUn coordinateur de mariage indépendant — contrairement au coordinateur de la salle —, il travaille pour vous, pas pour le lieu. Il défend vos intérêts, négocie vos contrats et gère le jour J à vos côtés.",
+    "link": "En savoir plus sur moi"
+  },
+  "promises": {
+    "tag": "Trois promesses",
+    "items": [
+      {
+        "num": "001",
+        "label": "DIYUK",
+        "title": "Précision",
+        "body": "Une production d'une grande précision — chaque détail, chaque prestataire, chaque minute. Rien ne passe à travers les mailles."
+      },
+      {
+        "num": "002",
+        "label": "HISSAHON",
+        "title": "Économies",
+        "body": "Je ne vous laisserai pas payer ce dont vous n'avez pas besoin. Nous négocions ensemble avec chaque prestataire."
+      },
+      {
+        "num": "003",
+        "label": "ROSH SHAKET",
+        "title": "Sérénité",
+        "body": "Le jour J — je gère tout. Vous dansez, vous riez, vous profitez. C'est mon travail."
+      }
+    ]
+  },
+  "stats": {
+    "tag": "En chiffres",
+    "h2": "De vraies économies.\nDu vrai temps ensemble.\nDes souvenirs pour la vie.",
+    "items": [
+      { "value": "150+", "label": "Mariages produits" },
+      { "value": "5–10", "label": "Mois d'accompagnement" },
+      { "value": "20–40%", "label": "D'économies en moyenne" },
+      { "value": "100%", "label": "Couples heureux" }
+    ],
+    "note": "* Chiffres à confirmer par le client avant la mise en ligne."
+  },
+  "process": {
+    "tag": "Comment ça marche",
+    "h2": "Quatre étapes\npour le mariage de vos rêves.",
+    "steps": [
+      {
+        "num": "01",
+        "title": "Première rencontre",
+        "body": "On définit ensemble votre rêve, votre budget, et ce qui compte vraiment pour vous."
+      },
+      {
+        "num": "02",
+        "title": "Salle et prestataires",
+        "body": "Je vous guide, négocie pour vous, et m'assure que vous ne payez pas un shekel de trop."
+      },
+      {
+        "num": "03",
+        "title": "Planification et suivi",
+        "body": "Des mois de préparation structurée — déroulé, menu, timing, briefing de la cérémonie."
+      },
+      {
+        "num": "04",
+        "title": "Le jour J",
+        "body": "J'arrive en premier et repars en dernier. Vous profitez de chaque instant. Tout est entre de bonnes mains."
+      }
+    ]
+  },
+  "details": {
+    "h2": "Voir les détails\nauxquels vous n'auriez jamais pensé.",
+    "body": "Qui s'occupera des affaires que vous avez apportées de la maison ? Qui veillera à ce que le briefing de la chuppah se passe exactement comme prévu ? C'est ce que j'adore faire."
+  },
+  "weddings_section": {
+    "tag": "Mariages",
+    "h2": "Chaque mariage,\nune histoire différente.",
+    "months_label": "mois d'accompagnement",
+    "view_more": "Voir tous les mariages",
+    "couples": [
+      { "id": "shir-tal", "names": "Shir & Tal", "location": "Centre, Israël", "months": 8 },
+      { "id": "eden-tevel", "names": "Eden & Tevel", "location": "Nord, Israël", "months": 10 },
+      { "id": "yuval-idan", "names": "Yuval & Idan", "location": "Israël", "months": 5 },
+      { "id": "limor-oded", "names": "Limor & Oded", "location": "Plage de Poleg, Netanya", "months": 8 },
+      { "id": "sivan-daniel", "names": "Sivan & Daniel", "location": "Israël", "months": 6 },
+      { "id": "ofir-or", "names": "Ofir & Or", "location": "Israël", "months": 7 }
+    ]
+  },
+  "testimonials": {
+    "tag": "Témoignages",
+    "h2": "Ce qu'ils disent.",
+    "placeholder": "<!-- Ajouter ici les vrais témoignages des couples -->"
+  },
+  "bts": {
+    "tag": "Dans les coulisses",
+    "h2": "Moi et vos parents,\non va devenir amis.",
+    "body": "Beaucoup d'humour, beaucoup d'amour, et des détails auxquels vous n'auriez jamais pensé. C'est ce que j'apporte."
+  },
+  "faq": {
+    "tag": "Questions fréquentes",
+    "h2": "Tout ce que vous\nvouliez savoir.",
+    "items": [
+      {
+        "q": "Pourquoi faire appel à un coordinateur indépendant ?",
+        "a": "Contrairement au coordinateur fourni par la salle, un coordinateur indépendant travaille exclusivement pour vous. Il négocie les contrats dans votre intérêt, gère les prestataires, et est présent le jour J pour que tout se passe exactement comme prévu. <!-- À compléter avec la réponse approuvée par le client -->"
+      },
+      {
+        "q": "Combien coûte votre prestation ?",
+        "a": "<!-- À compléter avec la réponse approuvée par le client -->"
+      },
+      {
+        "q": "Combien de temps à l'avance faut-il vous contacter ?",
+        "a": "Le plus tôt est le mieux. J'accompagne les couples de 5 à 10 mois avant leur mariage, parfois davantage. Plus on anticipe, plus on a de choix, de meilleures conditions et moins de stress."
+      },
+      {
+        "q": "Comment m'aidez-vous à économiser de l'argent ?",
+        "a": "<!-- À compléter avec la réponse approuvée par le client -->"
+      },
+      {
+        "q": "Travaillez-vous aussi pour les petits mariages ?",
+        "a": "<!-- À compléter avec la réponse approuvée par le client -->"
+      }
+    ]
+  },
+  "contact": {
+    "tag": "On se rencontre",
+    "h2": "Parlons de\nvotre mariage.",
+    "body": "Un premier rendez-vous — sans engagement, avec beaucoup de sourires.",
+    "fields": {
+      "bride": "Prénom de la mariée",
+      "groom": "Prénom du marié",
+      "date": "Date approximative",
+      "region": "Région / ville",
+      "guests": "Nombre d'invités",
+      "budget": "Budget indicatif",
+      "venue": "Salle déjà réservée ?",
+      "venue_yes": "Oui",
+      "venue_no": "Pas encore",
+      "message": "Parlez-moi un peu de vous",
+      "submit": "Envoyer via WhatsApp"
+    },
+    "wa_message": "Bonjour Tzach ! Nous sommes {bride} et {groom}, nous nous marions vers {date} dans la région {region}. {guests} invités, budget {budget}. Salle : {venue}. {message}"
+  },
+  "footer": {
+    "tagline": "Le coordinateur de mariage le plus joyeux que vous rencontrerez.",
+    "legal": "Mentions légales",
+    "rights": "Tous droits réservés"
+  },
+  "alts": {
+    "portrait": "Tzach Zrihan, coordinateur de mariage",
+    "hero": "Un beau mariage en Israël",
+    "logo": "Tzach Zrihan — Wedding Productions"
+  },
+  "wa_float_label": "Écrivez-moi"
+}

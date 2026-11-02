@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <title>Tzach Zrihan — Wedding Productions</title>
+  <meta name="robots" content="noindex">
+  <meta http-equiv="refresh" content="0;url=/he/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <script>
+    (function() {
+      try {
+        var langs = ["he","en","fr","es"];
+        var saved = localStorage.getItem("tz-lang");
+        if (saved && langs.includes(saved)) { location.replace("/" + saved + "/"); return; }
+        var nav = navigator.language || navigator.userLanguage || "";
+        nav = nav.split("-")[0].toLowerCase();
+        if (langs.includes(nav)) { location.replace("/" + nav + "/"); return; }
+      } catch(e) {}
+      location.replace("/he/");
+    })();
+  </script>
+</head>
+<body style="background:#FAF8F5;display:flex;align-items:center;justify-content:center;min-height:100vh;font-family:sans-serif;">
+  <a href="/he/" style="color:#1A1715;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none">
+    TZACH ZRIHAN · WEDDING PRODUCTIONS
+  </a>
+</body>
+</html>
