@@ -2,28 +2,29 @@
 <html lang="he" dir="rtl">
 <head>
   <meta charset="utf-8">
-  <title>Tzach Zrihan — Wedding Productions</title>
-  <meta name="robots" content="noindex">
-  <meta http-equiv="refresh" content="0;url=/he/">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tzach Zrihan · Wedding Productions</title>
+  <meta name="description" content="צח זריהן, מפיק חתונות חיצוני: ליווי זוגות לאורך חודשים, משא ומתן מול ספקים כדי שלא תשלמו על מה שלא צריך, וניהול האירוע ביום עצמו. בואו נכיר.">
+  <link rel="canonical" href="https://tzach-zrihan.vercel.app/he/">
+  <link rel="alternate" hreflang="he" href="https://tzach-zrihan.vercel.app/he/">
+  <link rel="alternate" hreflang="en" href="https://tzach-zrihan.vercel.app/en/">
+  <link rel="alternate" hreflang="fr" href="https://tzach-zrihan.vercel.app/fr/">
+  <link rel="alternate" hreflang="es" href="https://tzach-zrihan.vercel.app/es/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <script>
-    (function() {
-      try {
-        var langs = ["he","en","fr","es"];
-        var saved = localStorage.getItem("tz-lang");
-        if (saved && langs.includes(saved)) { location.replace("/" + saved + "/"); return; }
-        var nav = navigator.language || navigator.userLanguage || "";
-        nav = nav.split("-")[0].toLowerCase();
-        if (langs.includes(nav)) { location.replace("/" + nav + "/"); return; }
-      } catch(e) {}
-      location.replace("/he/");
+    (function () {
+      var langs = ["he","en","fr","es"], l = null;
+      try { l = localStorage.getItem("tz-lang"); } catch (e) {}
+      if (langs.indexOf(l) < 0) {
+        var nav = (navigator.languages || [navigator.language || ""]).map(function (x) { return String(x).slice(0, 2).toLowerCase(); });
+        for (var i = 0; i < nav.length && !l; i++) if (nav[i] === "iw") l = "he"; else if (langs.indexOf(nav[i]) >= 0) l = nav[i];
+      }
+      location.replace("/" + (langs.indexOf(l) >= 0 ? l : "he") + "/" + location.hash);
     })();
   </script>
+  <style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#FAF8F5;color:#1A1715;font:14px/1.6 system-ui,sans-serif}nav{display:flex;gap:1.5rem}a{color:inherit}</style>
 </head>
-<body style="background:#FAF8F5;display:flex;align-items:center;justify-content:center;min-height:100vh;font-family:sans-serif;">
-  <a href="/he/" style="color:#1A1715;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none">
-    TZACH ZRIHAN · WEDDING PRODUCTIONS
-  </a>
+<body>
+  <nav><a href="/he/" lang="he">עב</a><a href="/en/" lang="en">EN</a><a href="/fr/" lang="fr">FR</a><a href="/es/" lang="es">ES</a></nav>
 </body>
 </html>

@@ -1,181 +1,333 @@
 {
   "lang": "es",
   "dir": "ltr",
-  "langLabel": "ES",
+  "label": "ES",
+  "locale": "es_ES",
   "meta": {
-    "title": "Tzach Zrihan | Organizador de bodas en Israel — Precisión, ahorro y tranquilidad",
-    "desc": "Tzach Zrihan es un coordinador de bodas independiente en Israel — el más alegre que conocerás. Acompañamiento completo de 5 a 10 meses, ahorros reales, tranquilidad absoluta el día de la boda.",
-    "og_title": "Tzach Zrihan | Organizador de bodas Israel",
-    "og_desc": "Organización de bodas de alta precisión en Israel, con ahorros reales y mucha calidez.",
-    "keywords": "organizador bodas Israel, wedding planner Israel, coordinador bodas Israel, Tzach Zrihan, boda destino Israel"
+    "title": "Tzach Zrihan | Organizador de bodas en Israel",
+    "description": "Tzach Zrihan es organizador de bodas independiente en Israel. Acompaña a las parejas durante meses, negocia con el salón y los proveedores para que no paguen de más y dirige la boda el gran día.",
+    "legalTitle": "Aviso legal y privacidad | Tzach Zrihan"
   },
-  "skip": "Saltar",
+  "ui": {
+    "skip": "Saltar",
+    "skipToContent": "Ir al contenido",
+    "menu": "Menú",
+    "close": "Cerrar",
+    "language": "Idioma",
+    "play": "Ver el video",
+    "prev": "Foto anterior",
+    "next": "Foto siguiente",
+    "waFloat": "Escríbeme por WhatsApp",
+    "credits": "Créditos",
+    "monthsWith": "meses de acompañamiento",
+    "openStory": "La historia de",
+    "viewPost": "Ver la publicación en Instagram",
+    "home": "Volver al inicio",
+    "rights": "Todos los derechos reservados",
+    "pause": "Pausar el video",
+    "resume": "Reanudar el video"
+  },
   "nav": {
     "story": "Mi historia",
     "services": "Servicios",
     "weddings": "Bodas",
-    "testimonials": "Opiniones",
+    "testimonials": "Testimonios",
     "faq": "Preguntas",
-    "contact": "Nos conocemos"
+    "contact": "Conozcámonos"
   },
-  "logo": {
-    "name": "TZACH ZRIHAN",
-    "sub": "WEDDING PRODUCTIONS"
+  "brand": {
+    "name": "Tzach Zrihan",
+    "sub": "Wedding Productions"
+  },
+  "intro": {
+    "line": "Tzach Zrihan · Wedding Productions"
   },
   "hero": {
-    "tag": "WEDDING PRODUCTIONS · ISRAEL",
-    "h1": "La boda con la que siempre soñasteis,\nsin el estrés.",
-    "cta": "Nos conocemos"
+    "tag": "Tzach Zrihan · Organizador de bodas en Israel",
+    "title": "La boda que siempre soñaron,\nsin estrés ni sorpresas.",
+    "cta": "Conozcámonos"
   },
-  "intro_text": "WEDDING PRODUCTIONS · ISRAEL",
   "manifesto": {
-    "tag": "Mi historia",
-    "h2": "¿Os acabáis de comprometer?\nLa emoción crece, y la confusión también.",
-    "body": "Todo el mundo os da un consejo diferente y no sabéis por dónde empezar. Estoy aquí para traer orden, ahorro y la tranquilidad que merecéis — con mucho amor y amistad genuina con las parejas. Porque al final, no soy solo vuestro organizador. Soy vuestro amigo en todo este proceso.\n\nUn coordinador independiente de bodas — a diferencia del coordinador del salón — trabaja para vosotros, no para el venue. Defiende vuestros intereses, negocia contratos y gestiona el gran día a vuestro lado.",
-    "link": "Saber más sobre mí"
+    "tag": "¿Se comprometieron?",
+    "title": "La emoción crece.\nY cada uno les dice algo distinto.",
+    "text": "Orden y organización, ahorro y tranquilidad, con mucho cariño y una amistad real entre las parejas y yo. Así se llega a la boda que siempre quisieron: sin renunciar a nada, con pasos seguros y sin sorpresas.",
+    "link": "Mi historia"
   },
   "promises": {
     "tag": "Tres promesas",
     "items": [
       {
-        "num": "001",
-        "label": "DIYUK",
+        "label": "Diyuk",
         "title": "Precisión",
-        "body": "Producción de alta precisión — cada detalle, cada proveedor, cada minuto de la velada. Nada se queda sin atender."
+        "text": "Una producción de gran precisión. Cada proveedor, cada horario y cada pequeño detalle, planificados de antemano."
       },
       {
-        "num": "002",
-        "label": "HISSAHON",
+        "label": "Hissakhon",
         "title": "Ahorro",
-        "body": "No os dejaré pagar por lo que no necesitáis. Negociamos juntos con cada proveedor para proteger vuestro presupuesto."
+        "text": "No voy a dejar que paguen lo que no necesitan. Yo me siento frente a los proveedores por ustedes."
       },
       {
-        "num": "003",
-        "label": "ROSH SHAKET",
+        "label": "Rosh shaket",
         "title": "Tranquilidad",
-        "body": "El día de la boda — yo me encargo de todo. Vosotros bailáis, reís y disfrutáis. Eso es lo mío."
+        "text": "El día de la boda yo dirijo el evento. Ustedes solo disfrutan."
       }
     ]
   },
-  "stats": {
-    "tag": "En números",
-    "h2": "Ahorros reales.\nTiempo juntos de verdad.\nRecuerdos para toda la vida.",
-    "items": [
-      { "value": "150+", "label": "Bodas producidas" },
-      { "value": "5–10", "label": "Meses de acompañamiento" },
-      { "value": "20–40%", "label": "Ahorro medio" },
-      { "value": "100%", "label": "Parejas felices" }
+  "about": {
+    "tag": "Mi historia",
+    "title": "El organizador de bodas\nmás alegre que van a conocer.",
+    "paras": [
+      "Soy Tzach. Acompaño a las parejas desde el compromiso hasta el último baile: a veces cinco meses, a veces diez. En ese tiempo construimos la boda juntos, paso a paso y sin presión.",
+      "Me ocupo de los salones y los proveedores, comparo presupuestos y hago las preguntas que no siempre es cómodo hacer. Y el día de la boda estoy desde el primer minuto, desde el ensayo de la jupá hasta las cosas que trajeron de casa."
     ],
-    "note": "* Cifras a confirmar por el cliente antes del lanzamiento."
+    "definitionTitle": "¿Qué es un organizador de bodas independiente?",
+    "definition": "En Israel, el «mafik jatunot jitzoni» es un organizador de bodas independiente del salón. Trabaja solo para la pareja: ayuda a elegir salón y proveedores, negocia los precios, arma el presupuesto y el cronograma de la noche, y dirige la boda ese día.",
+    "quote": "La idea de un organizador independiente es fijarse en los detalles en los que ustedes nunca habrían pensado.",
+    "sign": "Tzach Zrihan",
+    "videoLabel": "¿Se comprometieron? Tzach explica cómo funciona (en hebreo)"
+  },
+  "services": {
+    "tag": "Servicios",
+    "title": "Lo que hago\npor ustedes.",
+    "items": [
+      {
+        "title": "Producción completa",
+        "text": "De la A a la Z durante los meses de preparación, con una sola persona para todas sus preguntas."
+      },
+      {
+        "title": "Salón y proveedores",
+        "text": "Encontrar el lugar y los proveedores adecuados, negociar y ahorrar donde importa."
+      },
+      {
+        "title": "Planificación y presupuesto",
+        "text": "El cronograma de la noche, el menú (por ejemplo, un menú tipo restaurante sin pausas) y un plan claro para cada etapa."
+      },
+      {
+        "title": "Ensayo de la jupá",
+        "text": "Un repaso tranquilo de la ceremonia, para llegar a la jupá relajados y sabiendo qué pasa en cada momento."
+      },
+      {
+        "title": "Dirección del gran día",
+        "text": "Proveedores, horarios, invitados, y alguien que cuida las cosas que trajeron de casa."
+      },
+      {
+        "title": "Celebraciones especiales",
+        "text": "Bodas en la playa, segundas bodas, una noche «The 90’s are back». Cada idea tiene su propia producción."
+      }
+    ]
   },
   "process": {
     "tag": "Cómo funciona",
-    "h2": "Cuatro pasos\npara la boda que siempre quisisteis.",
+    "title": "Cuatro pasos,\nsin sorpresas.",
     "steps": [
       {
-        "num": "01",
         "title": "Primera reunión",
-        "body": "Definimos juntos vuestro sueño, vuestro presupuesto y lo que de verdad importa."
+        "text": "Hablamos del sueño, del presupuesto y de lo que de verdad les importa."
       },
       {
-        "num": "02",
         "title": "Salón y proveedores",
-        "body": "Os guío, negocio en vuestro nombre y me aseguro de que no paguéis ni un shekel de más."
+        "text": "Elegimos juntos, y yo negocio para que no gasten ni un shekel de más."
       },
       {
-        "num": "03",
-        "title": "Planificación y seguimiento",
-        "body": "Meses de planificación estructurada — programa de la velada, menú, timings, briefing de la ceremonia."
+        "title": "Los meses de preparación",
+        "text": "Seguimiento cercano: cronograma, menú, programa de la noche y ensayo de la jupá."
       },
       {
-        "num": "04",
         "title": "El gran día",
-        "body": "Llego primero y me marcho el último. Vosotros disfrutáis cada instante. Todo está en buenas manos."
+        "text": "Dirijo el evento de principio a fin. Ustedes bailan."
       }
     ]
   },
   "details": {
-    "h2": "Fijarse en los detalles\nen los que nunca habríais pensado.",
-    "body": "¿Quién se encargará de las cosas personales que trajisteis de casa? ¿Quién velará para que el briefing de la chuppah salga exactamente como lo planeado? Eso es lo que más me gusta hacer."
+    "title": "Fijarse en los detalles\nen los que nunca pensarían.",
+    "text": "Pero ¿quién se va a ocupar de las cosas que trajimos de casa? Yo, por supuesto."
   },
-  "weddings_section": {
+  "weddings": {
     "tag": "Bodas",
-    "h2": "Cada boda,\nuna historia diferente.",
-    "months_label": "meses de acompañamiento",
-    "view_more": "Ver todas las bodas",
-    "couples": [
-      { "id": "shir-tal", "names": "Shir & Tal", "location": "Centro, Israel", "months": 8 },
-      { "id": "eden-tevel", "names": "Eden & Tevel", "location": "Norte, Israel", "months": 10 },
-      { "id": "yuval-idan", "names": "Yuval & Idan", "location": "Israel", "months": 5 },
-      { "id": "limor-oded", "names": "Limor & Oded", "location": "Playa de Poleg, Netanya", "months": 8 },
-      { "id": "sivan-daniel", "names": "Sivan & Daniel", "location": "Israel", "months": 6 },
-      { "id": "ofir-or", "names": "Ofir & Or", "location": "Israel", "months": 7 }
-    ]
+    "title": "Cada boda,\nuna historia distinta.",
+    "couples": {
+      "sivan-daniel": {
+        "names": "Sivan & Daniel",
+        "place": "Sesión de pareja en el bosque",
+        "story": "Un día que empezó con la luz dorada entre los árboles y terminó con la pista llena."
+      },
+      "yuval-idan": {
+        "names": "Yuval & Idan",
+        "place": "Kav HaMaim",
+        "story": "Acompañé a Yuval e Idan durante cinco meses, y su boda fue preciosa."
+      },
+      "limor-oded": {
+        "names": "Limor & Oded",
+        "place": "Playa de Poleg",
+        "story": "Una segunda boda después de 13 años juntos, en la playa: imagen personalizada, bufé libre de carnes y la jupá más emotiva y alegre."
+      },
+      "digmi": {
+        "names": "Mr & Mrs Digmi",
+        "place": "El paseo de cipreses",
+        "story": "Una boda blanca, limpia y precisa, entre los cipreses."
+      },
+      "ofir-or": {
+        "names": "Ofir & Or",
+        "place": "The Wedding Day",
+        "story": "La preparación en casa, los amigos junto a la piscina y la primera mirada en el césped."
+      },
+      "shachar-eyal": {
+        "names": "Shachar & Eyal",
+        "place": "Justo antes de la entrada",
+        "story": "Champán, risas y una torre de copas. Gracias por el privilegio."
+      }
+    }
+  },
+  "months": {
+    "tag": "En números",
+    "title": "Una boda se prepara\nen meses, no en una noche.",
+    "unit": "meses",
+    "items": {
+      "eden-tevel": {
+        "names": "Eden & Tevel",
+        "quote": "Después de diez meses, ver que todo salió exactamente como lo planeamos."
+      },
+      "shir-tal": {
+        "names": "Shir & Tal",
+        "quote": "Gracias por el privilegio de producir su boda durante ocho meses."
+      },
+      "yuval-idan": {
+        "names": "Yuval & Idan",
+        "quote": "Los acompañé cinco meses, y su boda fue preciosa."
+      }
+    },
+    "weddings": "bodas producidas",
+    "savings": "de ahorro medio por pareja"
   },
   "testimonials": {
     "tag": "Testimonios",
-    "h2": "Lo que dicen.",
-    "placeholder": "<!-- Añadir aquí los testimonios reales de las parejas -->"
+    "title": "Lo que cuentan las parejas.",
+    "lian": {
+      "names": "Lian & Arnold",
+      "caption": "Invité a Lian y Arnold a contar su experiencia. Parte 1: el ahorro. (En hebreo)"
+    },
+    "more": "Más testimonios en la historia destacada «המלצות» de Instagram"
   },
   "bts": {
-    "tag": "Entre bastidores",
-    "h2": "Yo y vuestros padres\nvamos a ser amigos.",
-    "body": "Mucho humor, mucho amor y detalles en los que nunca habríais pensado. Eso es lo que traigo."
+    "tag": "Detrás de escena",
+    "title": "Sus padres y yo\nvamos a ser amigos.",
+    "text": "Mucho humor, mucho cariño y un montón de pequeños detalles. Así se ve desde adentro.",
+    "items": {
+      "parents": "Sus padres y yo",
+      "briefing": "Ensayo de la jupá",
+      "details": "Los pequeños detalles",
+      "order": "Orden y organización"
+    }
   },
   "faq": {
-    "tag": "Preguntas frecuentes",
-    "h2": "Todo lo que queríais\nsaber.",
+    "tag": "Preguntas",
+    "title": "Lo que todos\nme preguntan.",
     "items": [
       {
-        "q": "¿Por qué necesito un coordinador independiente?",
-        "a": "A diferencia del coordinador que ofrece el salón, un coordinador independiente trabaja exclusivamente para vosotros. Negocia contratos en vuestro beneficio, gestiona proveedores y está presente el día de la boda para que todo salga exactamente como lo planeado. <!-- A completar con la respuesta aprobada por el cliente -->"
+        "q": "¿Por qué un organizador independiente si el salón ya tiene coordinador?",
+        "a": "El coordinador del salón trabaja para el salón. Un organizador independiente trabaja solo para ustedes: conoce a los proveedores, compara presupuestos, negocia y cuida su presupuesto, y el día de la boda se asegura de que todo pase a tiempo y como lo planearon."
       },
       {
-        "q": "¿Cuánto cuesta el servicio?",
-        "a": "<!-- A completar con la respuesta aprobada por el cliente -->"
+        "q": "¿Con cuánta anticipación conviene contactarte?",
+        "a": "Lo antes posible. Normalmente acompaño a las parejas entre cinco y diez meses antes de la boda. Así hay tiempo para elegir salón y proveedores con calma y conseguir las mejores condiciones."
       },
       {
-        "q": "¿Con cuánta antelación debo contactaros?",
-        "a": "Cuanto antes mejor. Acompaño a las parejas de 5 a 10 meses antes de la boda, a veces más. Cuanto antes planificamos, más opciones tenemos, mejores condiciones conseguimos y menos estrés hay."
+        "q": "¿Cómo nos ayudas a ahorrar?",
+        "a": "Sé qué necesitan de verdad y qué sobra, y me siento frente a los proveedores por ustedes. No voy a dejar que paguen lo que no necesitan: comparamos ofertas, dejamos lo que no les importa e invertimos en lo que sí."
       },
       {
-        "q": "¿Cómo me ayudáis a ahorrar?",
-        "a": "<!-- A completar con la respuesta aprobada por el cliente -->"
+        "q": "¿Cuánto cuesta?",
+        "a": "Depende del alcance del acompañamiento y del tipo de evento. En la primera reunión vemos qué necesitan y reciben una propuesta clara, sin letra pequeña."
       },
       {
-        "q": "¿Trabajáis también con bodas pequeñas?",
-        "a": "<!-- A completar con la respuesta aprobada por el cliente -->"
+        "q": "¿Se puede organizar una boda en Israel viviendo en el exterior?",
+        "a": "Sí. Gran parte del trabajo se hace por WhatsApp y videollamada, y yo me encargo en persona de las visitas a salones y las reuniones con proveedores. Ustedes llegan a una boda lista."
       }
     ]
   },
   "contact": {
-    "tag": "Nos conocemos",
-    "h2": "Hablemos\nde vuestra boda.",
-    "body": "Una primera reunión — sin compromiso, con muchas sonrisas.",
+    "tag": "Conozcámonos",
+    "title": "Cuéntenme\nsobre su boda.",
+    "text": "Una primera reunión, sin compromiso. Completen algunos datos: el mensaje se abre en su WhatsApp, listo para enviar.",
     "fields": {
-      "bride": "Nombre de la novia",
-      "groom": "Nombre del novio",
+      "names": "Sus nombres",
+      "namesHint": "p. ej. Noa & Itay…",
       "date": "Fecha aproximada",
-      "region": "Región / ciudad",
-      "guests": "Número de invitados",
-      "budget": "Presupuesto orientativo",
-      "venue": "¿Salón ya reservado?",
-      "venue_yes": "Sí",
-      "venue_no": "Todavía no",
-      "message": "Contadme un poco sobre vosotros",
-      "submit": "Enviar por WhatsApp"
+      "region": "Región",
+      "guests": "Cantidad de invitados",
+      "budget": "Presupuesto aproximado",
+      "venue": "¿Ya reservaron salón?",
+      "venueYes": "Sí",
+      "venueNo": "Todavía no",
+      "message": "Algo que quieran que sepa",
+      "submit": "Enviar por WhatsApp",
+      "required": "Sus nombres, para empezar"
     },
-    "wa_message": "Hola Tzach! Somos {bride} y {groom}, nos casamos hacia {date} en la zona de {region}. {guests} invitados, presupuesto {budget}. Salón: {venue}. {message}"
+    "regions": [
+      "Norte",
+      "Haifa y alrededores",
+      "Sharón",
+      "Centro / Tel Aviv",
+      "Jerusalén",
+      "Shfelá",
+      "Sur",
+      "Otro / exterior"
+    ],
+    "budgets": [
+      "Hasta 100.000 ₪",
+      "100.000 – 200.000 ₪",
+      "200.000 – 300.000 ₪",
+      "Más de 300.000 ₪",
+      "Todavía no sabemos"
+    ],
+    "waGreeting": "¡Hola Tzach! Te encontramos por tu sitio web y nos encantaría conocerte.",
+    "direct": "O directamente",
+    "waLabels": {
+      "names": "Nombres",
+      "date": "Fecha",
+      "region": "Región",
+      "guests": "Invitados",
+      "budget": "Presupuesto",
+      "venue": "Salón reservado"
+    }
   },
   "footer": {
-    "tagline": "El organizador de bodas más alegre que conoceréis.",
-    "legal": "Aviso legal",
-    "rights": "Todos los derechos reservados"
+    "tagline": "El organizador de bodas más alegre que van a conocer.",
+    "legal": "Aviso legal"
+  },
+  "legal": {
+    "title": "Aviso legal y privacidad",
+    "sections": [
+      {
+        "h": "Titular",
+        "p": "Este sitio pertenece a Tzach Zrihan, organizador de bodas (Tzach Zrihan Wedding Productions). Contacto: WhatsApp +972 54-981-4740."
+      },
+      {
+        "h": "Sus datos",
+        "p": "El formulario no guarda nada en este sitio. Los datos que completan forman un mensaje que se abre en su propia aplicación de WhatsApp, y ustedes deciden si lo envían. Solo se usan para responderles."
+      },
+      {
+        "h": "Cookies",
+        "p": "Este sitio no usa cookies de seguimiento ni de publicidad. El navegador solo recuerda el idioma elegido y si ya vieron la introducción."
+      },
+      {
+        "h": "Fotos y videos",
+        "p": "Las fotos y los videos provienen de bodas producidas por Tzach. Los fotógrafos aparecen junto a cada boda. Por favor, no los reutilicen sin permiso."
+      },
+      {
+        "h": "Alojamiento",
+        "p": "El sitio está alojado por Vercel Inc. Las tipografías se cargan desde Google Fonts."
+      }
+    ]
   },
   "alts": {
-    "portrait": "Tzach Zrihan, organizador de bodas",
-    "hero": "Una boda preciosa en Israel",
-    "logo": "Tzach Zrihan — Wedding Productions"
-  },
-  "wa_float_label": "Escríbeme"
+    "hero": "Una pareja de novios abrazados al atardecer, de un video de boda producido por Tzach",
+    "portrait": "Tzach Zrihan, organizador de bodas, con su planilla en la mano",
+    "precision": "Los novios en un paseo de cipreses perfectamente alineados",
+    "savings": "Sivan y Daniel frente con frente en el bosque",
+    "calm": "Sivan y Daniel entre rayos de luz en el bosque",
+    "chuppah": "Una jupá blanca y las mesas listas antes de la ceremonia, en blanco y negro",
+    "briefing": "Tzach explica el ensayo de la jupá a los novios",
+    "gallery": "Foto de la boda de"
+  }
 }

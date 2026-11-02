@@ -1,631 +1,615 @@
 /**
- * Génère les pages statiques du site Tzach Zrihan (4 langues).
- * Dossiers : /he/, /en/, /fr/, /es/ + /index.html (redirect)
- * Textes   : locales/<lang>.json
+ * Génère le site statique, une page par langue :
+ *   /index.html (redirection vers la langue mémorisée ou celle du navigateur)
+ *   /he/ (par défaut, RTL), /en/, /fr/, /es/ + page légale de chaque langue
+ *   public/sitemap.xml, robots.txt, llms.txt, favicon
+ * Textes : locales/<langue>.json · Données : data/site.json · Médias : src/data/media.json (npm run media)
  *
- * npm run gen   (lancé automatiquement par npm run dev / npm run build)
+ *   npm run gen   (lancé automatiquement par npm run dev et npm run build)
  */
-import { readFile, writeFile, mkdir } from "node:fs/promises";
+import { readFile, writeFile, mkdir, access } from "node:fs/promises";
 import path from "node:path";
 
-const ROOT   = path.resolve(import.meta.dirname, "..");
-const SITE   = (process.env.SITE_URL || "https://tzach-zrihan.vercel.app").replace(/\/$/, "");
-const LANGS  = ["he", "en", "fr", "es"];
-const WA_NUM = "972549814740";
-const IG_URL = "https://www.instagram.com/tzach___productions/";
-const THREADS_URL = "https://www.threads.net/@tzach___productions";
+const ROOT = path.resolve(import.meta.dirname, "..");
+const read = async (p) => JSON.parse(await readFile(path.join(ROOT, p), "utf8"));
+const LANGS = ["he", "en", "fr", "es"];
+const L = Object.fromEntries(await Promise.all(LANGS.map(async (l) => [l, await read(`locales/${l}.json`)])));
+const S = await read("data/site.json");
+const M = await read("src/data/media.json");
+const SITE = (process.env.SITE_URL || S.url).replace(/\/$/, "");
+const WA = `https://wa.me/${S.wa}`;
 
-const read  = async (p) => JSON.parse(await readFile(path.join(ROOT, p), "utf8"));
-const write = async (p, html) => {
-  await mkdir(path.dirname(path.join(ROOT, p)), { recursive: true });
-  await writeFile(path.join(ROOT, p), html, "utf8");
-  console.log("✓", p);
+const LEGAL = { he: "privacy/", en: "privacy/", fr: "mentions-legales/", es: "aviso-legal/" };
+const FONTS = {
+  he: "family=Heebo:wght@300;400;500&family=Frank+Ruhl+Libre:wght@300;400&family=Jost:wght@300;400",
+  latin: "family=Jost:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;1,300;1,400",
 };
 
-// Charger les locales
-const L = {};
-for (const l of LANGS) L[l] = await read(`locales/${l}.json`);
+const esc = (s = "") => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+const br = (s = "") => esc(s).replace(/\n/g, "<br>");
+const num = (i) => String(i + 1).padStart(3, "0");
 
-const esc  = (s = "") => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
-const nl2br = (s = "") => String(s).replace(/\n/g, "<br>");
-
-/* ── Icônes SVG inline ──────────────────────────────────── */
-const icon = {
-  wa: `<svg viewBox="0 0 24 24" aria-hidden="true" role="img"><path d="M20 11.6A8.3 8.3 0 0 1 7.8 19L4 20l1-3.7a8.3 8.3 0 1 1 15-4.7Z"/><path d="M9 8.6c.2-.5.5-.5.8-.5h.5c.2 0 .4 0 .5.4l.7 1.6c.1.2 0 .4-.1.6l-.5.6c-.1.1-.2.3 0 .5.6 1 1.4 1.8 2.5 2.4.2.1.4.1.5 0l.6-.7c.2-.2.4-.2.6-.1l1.6.8c.2.1.3.2.3.4 0 .5-.2 1.2-.7 1.5-.5.3-1.4.6-2.6.2-1.3-.4-2.7-1.4-3.8-2.6-1-1.1-1.6-2.3-1.8-3.2-.1-.8.2-1.5.5-1.9Z"/></svg>`,
-  ig: `<svg viewBox="0 0 24 24" aria-hidden="true" role="img"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6" fill="currentColor" stroke="none"/></svg>`,
-  threads: `<svg viewBox="0 0 24 24" aria-hidden="true" role="img"><path d="M12.001 2.5c-2.76 0-4.75.93-6.08 2.36-1.35 1.46-2 3.47-2.07 5.91-.07 2.44.5 4.5 1.73 5.97 1.27 1.52 3.13 2.26 5.42 2.26 1.59 0 2.98-.4 4.02-1.2 1.07-.82 1.69-2 1.78-3.46.04-.6.02-1.22-.06-1.85-.1-.76-.3-1.46-.6-2.06a5.77 5.77 0 0 0-1.18-1.61 5.03 5.03 0 0 0-1.68-.98c-.62-.2-1.28-.3-1.97-.27-.7.03-1.37.2-1.93.49-.52.27-.94.66-1.22 1.14-.13.22-.22.45-.28.7a2.45 2.45 0 0 0 .93 2.5c.48.34 1.1.53 1.82.56h.13c.5 0 .97-.1 1.37-.31.36-.19.65-.47.82-.8.16-.32.22-.67.15-1.02-.06-.33-.23-.63-.47-.86a1.7 1.7 0 0 0-.8-.44 1.87 1.87 0 0 0-.88 0"/></svg>`,
-  pin: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.7 7-12a7 7 0 0 0-14 0c0 5.3 7 12 7 12Z"/><circle cx="12" cy="9" r="2.4"/></svg>`,
-  clock: `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>`,
-  plus: `<svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>`,
-  play: `<svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3" fill="currentColor" stroke="none"/>`,
-};
-
-/* ── Logo SVG (typographique) ───────────────────────────── */
-function logoSvg(t) {
-  const isHe = t.lang === "he";
-  return `<span class="header-logo" translate="no">
-    <span class="logo-name">${esc(t.logo.name)}</span>
-    <span class="logo-sub">${esc(t.logo.sub)}</span>
-  </span>`;
+/* ---------- Médias ---------- */
+function pic(key, alt, { sizes = "100vw", cls = "", eager = false } = {}) {
+  const m = M[key];
+  if (!m) throw new Error(`Média manquant : ${key} (lancer npm run media)`);
+  const set = (ext) => m.widths.map((w) => `/media/${key}-${w}.${ext} ${w}w`).join(", ");
+  const last = m.widths[m.widths.length - 1];
+  const h = Math.round((m.h / m.w) * last);
+  return `<picture${cls ? ` class="${cls}"` : ""}><source type="image/avif" srcset="${set("avif")}" sizes="${sizes}"><img src="/media/${key}-${last}.webp" srcset="${set("webp")}" sizes="${sizes}" width="${last}" height="${h}" alt="${esc(alt)}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async"></picture>`;
 }
+/** Affiche du hero : verticale sur téléphone, horizontale ailleurs (même règle que la vidéo, data-portrait). */
+const PORTRAIT = "(max-aspect-ratio: 4/5)";
+function heroPoster(alt) {
+  const set = (key, ext) => M[key].widths.map((w) => `/media/${key}-${w}.${ext} ${w}w`).join(", ");
+  const h = M["hero/poster"], last = h.widths[h.widths.length - 1];
+  return `<picture class="hero__poster"><source media="${PORTRAIT}" type="image/avif" srcset="${set("hero/poster-v", "avif")}" sizes="100vw"><source media="${PORTRAIT}" type="image/webp" srcset="${set("hero/poster-v", "webp")}" sizes="100vw"><source type="image/avif" srcset="${set("hero/poster", "avif")}" sizes="100vw"><img src="/media/hero/poster-${last}.webp" srcset="${set("hero/poster", "webp")}" sizes="100vw" width="${last}" height="${Math.round((h.h / h.w) * last)}" alt="${esc(alt)}" fetchpriority="high" decoding="async"></picture>`;
+}
+const src = (key, w) => `/media/${key}-${w ?? M[key].widths[M[key].widths.length - 1]}.webp`;
 
-/* ── SVG anneaux intro ──────────────────────────────────── */
-const ringsSvg = `<svg id="intro-rings" viewBox="0 0 160 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-  <path class="ring-draw" d="M50 40 m-28,0 a28,28 0 1,1 56,0 a28,28 0 1,1 -56,0" stroke="#1A1715" stroke-width="1.2" fill="none"/>
-  <path class="ring-draw" d="M110 40 m-28,0 a28,28 0 1,1 56,0 a28,28 0 1,1 -56,0" stroke="#1A1715" stroke-width="1.2" fill="none"/>
-</svg>`;
+/* ---------- Icônes et marque ---------- */
+const icon = {
+  wa: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.6A8.3 8.3 0 0 1 7.8 19L4 20l1-3.7a8.3 8.3 0 1 1 15-4.7Z"/><path d="M9 8.6c.2-.5.5-.5.8-.5h.5c.2 0 .4 0 .5.4l.7 1.6c.1.2 0 .4-.1.6l-.5.6c-.1.1-.2.3 0 .5.6 1 1.4 1.8 2.5 2.4.2.1.4.1.5 0l.6-.7c.2-.2.4-.2.6-.1l1.6.8c.2.1.3.2.3.4 0 .5-.2 1.2-.7 1.5-.5.3-1.4.6-2.6.2-1.3-.4-2.7-1.4-3.8-2.6-1-1.1-1.6-2.3-1.8-3.2-.1-.8.2-1.5.5-1.9Z"/></svg>',
+  ig: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".7"/></svg>',
+  threads: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 11.2c-.3-2.4-1.9-3.6-4.3-3.6-1.7 0-3 .7-3.7 1.9"/><path d="M15.8 11.4c-3.5-.8-6.6.1-6.6 2.6 0 1.4 1.2 2.4 2.9 2.3 2.4-.1 3.6-1.9 3.7-5.4.1-3.9-1.6-6.6-5.6-6.6-4 0-6.2 2.8-6.2 7.6s2.3 7.4 6.6 7.4c3.6 0 6-2.1 6-4.6 0-1.6-.9-2.8-2.4-3.3"/></svg>',
+  play: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5Z"/></svg>',
+  close: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>',
+  prev: '<svg class="i flip" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>',
+  next: '<svg class="i flip" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>',
+  plus: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path class="v" d="M12 5v14"/><path d="M5 12h14"/></svg>',
+  arrow: '<svg class="i flip" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+};
+/** Monogramme TZ en traits fins (fichier autonome : public/brand/monogram.svg). */
+const MONO_PATHS = '<path d="M12 21h20M22 21v23"/><path d="M30 21h22L30 44h22"/>';
+const monogram = (cls = "") => `<svg class="mono ${cls}" viewBox="0 0 64 64" aria-hidden="true">${MONO_PATHS}</svg>`;
+/** Logo typographique : remplaçable par un vrai logo en changeant cette fonction. */
+const logo = (t, cls = "") => `<span class="logo ${cls}" translate="no"><span class="logo__name">${esc(t.brand.name)}</span><span class="logo__sub">${esc(t.brand.sub)}</span></span>`;
+const heart = '<svg class="heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.2s-7.4-4.5-7.4-10a4.2 4.2 0 0 1 7.4-2.8 4.2 4.2 0 0 1 7.4 2.8c0 5.5-7.4 10-7.4 10Z"/></svg>';
 
-/* ── Alternate hreflang ─────────────────────────────────── */
-const hreflang = LANGS.map(l =>
-  `<link rel="alternate" hreflang="${l}" href="${SITE}/${l}/">`
-).join("\n  ") + `\n  <link rel="alternate" hreflang="x-default" href="${SITE}/he/">`;
-
-/* ── Fonts ──────────────────────────────────────────────── */
-const FONTS = `<link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Frank+Ruhl+Libre:wght@300;400&family=Heebo:wght@200;300;400&family=Jost:wght@200;300;400&display=swap">`;
-
-/* ══════════════════════════════════════════════════════════
-   BUILDER DE PAGE
-══════════════════════════════════════════════════════════ */
-function buildPage(lang) {
+/* ---------- Données structurées ---------- */
+function schema(lang) {
   const t = L[lang];
-  const dir = t.dir;
-  const isRtl = dir === "rtl";
-
-  /* ── Sélecteur de langue ── */
-  const langSwitcher = LANGS.map(l => {
-    const active = l === lang ? " active" : "";
-    return `<button class="lang-btn${active}" data-lang="${l}" onclick="location.href='/${l}/';" lang="${l}">${esc(L[l].langLabel)}</button>`;
-  }).join(`<span class="lang-sep" aria-hidden="true">·</span>`);
-
-  /* ── Nav header ── */
-  const navLinks = Object.entries(t.nav).map(([key, label]) =>
-    `<a href="#${key}">${esc(label)}</a>`
-  ).join("\n");
-
-  /* ── Mobile nav ── */
-  const mobileNav = Object.entries(t.nav).map(([key, label]) =>
-    `<a href="#${key}">${esc(label)}</a>`
-  ).join("\n");
-
-  /* ── Promesses ── */
-  const promiseCards = t.promises.items.map((p, i) => `
-    <article class="promise-card" data-reveal data-delay="${i+1}">
-      <div class="promise-img">
-        <div class="promise-img-placeholder" aria-label="${esc(t.alts.hero)}">${esc(t.promises.items[i].num)}</div>
-        <!-- Remplacer par une vraie photo de mariage : <img src="/media/promise-${i+1}.webp" alt="${esc(t.alts.hero)}" loading="lazy"> -->
-      </div>
-      <div class="promise-body">
-        <span class="t-num">${esc(p.num)}</span>
-        <p class="promise-label">${esc(p.label)}</p>
-        <h3 class="t-h3">${esc(p.title)}</h3>
-        <p class="t-body">${esc(p.body)}</p>
-      </div>
-    </article>`
-  ).join("");
-
-  /* ── Stats ── */
-  const statsItems = t.stats.items.map((s, i) => `
-    <div class="stat-item" data-reveal data-delay="${i+1}">
-      <span class="stat-value">${esc(s.value)}</span>
-      <span class="stat-label">${esc(s.label)}</span>
-    </div>`
-  ).join("");
-
-  /* ── Process steps ── */
-  const processSteps = t.process.steps.map((s, i) => `
-    <div class="process-step" data-reveal data-delay="${i+1}">
-      <span class="step-num">${esc(s.num)}</span>
-      <h3 class="t-h3">${esc(s.title)}</h3>
-      <p class="t-body">${esc(s.body)}</p>
-    </div>`
-  ).join("");
-
-  /* ── Couples gallery ── */
-  const coupleCards = t.weddings_section.couples.map((c, i) => `
-    <article class="couple-card" data-reveal data-delay="${(i % 3) + 1}">
-      <div class="couple-img">
-        <div class="couple-img-placeholder" aria-label="${esc(c.names)}">${esc(c.names)}</div>
-        <!-- Remplacer : <img src="/media/couples/${c.id}/hero.webp" alt="${esc(c.names)}" loading="lazy"> -->
-      </div>
-      <div class="couple-info">
-        <p class="couple-names">${esc(c.names)}</p>
-        <div class="couple-meta">
-          <span>${icon.pin} ${esc(c.location)}</span>
-          <span>${icon.clock} ${c.months} ${esc(t.weddings_section.months_label)}</span>
-        </div>
-      </div>
-    </article>`
-  ).join("");
-
-  /* ── FAQ ── */
-  const faqItems = t.faq.items.map((item, i) => `
-    <div class="faq-item" id="faq-${i}">
-      <button class="faq-q" aria-expanded="false" aria-controls="faq-a-${i}">
-        <span>${esc(item.q)}</span>
-        <span class="faq-icon" aria-hidden="true">${icon.plus}</span>
-      </button>
-      <div class="faq-a" id="faq-a-${i}" role="region">
-        <div class="faq-a-inner">
-          <p class="faq-a-text">${item.a.startsWith("<!--") ? `<em style="color:var(--c-border)">À compléter par Tzach</em>` : esc(item.a)}</p>
-        </div>
-      </div>
-    </div>`
-  ).join("");
-
-  /* ── Contact form ── */
-  const waTpl = esc(t.contact.wa_message);
-  const f = t.contact.fields;
-
-  /* ── Données structurées LocalBusiness ── */
-  const schema = JSON.stringify({
+  const url = `${SITE}/${lang}/`;
+  const business = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "@id": `${SITE}/#tzach`,
-    "name": "Tzach Zrihan Wedding Productions",
-    "alternateName": "צח זריהן מפיק חתונות",
-    "description": t.meta.desc,
-    "url": `${SITE}/${lang}/`,
-    "telephone": "+972549814740",
-    "sameAs": [IG_URL, THREADS_URL],
-    "areaServed": { "@type": "Country", "name": "Israel" },
-    "serviceType": ["Wedding Planning", "Event Production", "Wedding Coordination"],
-    "priceRange": "$$",
-    "inLanguage": [lang]
-  });
+    "@id": `${SITE}/#business`,
+    name: "Tzach Zrihan Wedding Productions",
+    alternateName: ["צח זריהן מפיק חתונות", "Tzach Productions"],
+    description: t.meta.description,
+    url,
+    image: `${SITE}/og.jpg`,
+    logo: `${SITE}/brand/monogram.png`,
+    telephone: "+972549814740",
+    areaServed: { "@type": "Country", name: "Israel" },
+    knowsLanguage: ["he", "en"],
+    serviceType: t.services.items.map((s) => s.title),
+    founder: { "@type": "Person", name: "Tzach Zrihan", alternateName: "צח זריהן", jobTitle: lang === "he" ? "מפיק חתונות" : "Wedding producer" },
+    sameAs: [S.instagram, S.threads],
+    contactPoint: { "@type": "ContactPoint", telephone: "+972549814740", contactType: "customer service", availableLanguage: ["Hebrew"] },
+  };
+  const faq = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    inLanguage: lang,
+    mainEntity: t.faq.items.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+  };
+  const site = { "@context": "https://schema.org", "@type": "WebSite", name: "Tzach Zrihan", url: `${SITE}/`, inLanguage: LANGS };
+  return [business, faq, site].map((o) => `<script type="application/ld+json">${JSON.stringify(o).replace(/</g, "\\u003c")}</script>`).join("\n");
+}
 
+/* ---------- Gabarit commun ---------- */
+function head(lang, { title, description, pathFor, noindex = false }) {
+  const t = L[lang];
+  const fonts = lang === "he" ? FONTS.he : FONTS.latin;
+  const alternates = LANGS.map((l) => `<link rel="alternate" hreflang="${l}" href="${SITE}${pathFor(l)}">`).join("\n  ");
   return `<!doctype html>
-<html lang="${lang}" dir="${dir}">
+<html lang="${lang}" dir="${t.dir}">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>${esc(t.meta.title)}</title>
-  <meta name="description" content="${esc(t.meta.desc)}">
-  <meta name="keywords" content="${esc(t.meta.keywords)}">
-  <meta name="robots" content="index, follow">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>${esc(title)}</title>
+  <meta name="description" content="${esc(description)}">
+  ${noindex ? '<meta name="robots" content="noindex">' : ""}
+  <link rel="canonical" href="${SITE}${pathFor(lang)}">
+  ${alternates}
+  <link rel="alternate" hreflang="x-default" href="${SITE}${pathFor("he")}">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="${esc(t.meta.og_title)}">
-  <meta property="og:description" content="${esc(t.meta.og_desc)}">
-  <meta property="og:url" content="${SITE}/${lang}/">
-  <meta property="og:image" content="${SITE}/og-${lang}.jpg">
+  <meta property="og:site_name" content="Tzach Zrihan Wedding Productions">
+  <meta property="og:title" content="${esc(title)}">
+  <meta property="og:description" content="${esc(description)}">
+  <meta property="og:url" content="${SITE}${pathFor(lang)}">
+  <meta property="og:image" content="${SITE}/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="${t.locale}">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="canonical" href="${SITE}/${lang}/">
-  ${hreflang}
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  ${FONTS}
+  <meta name="theme-color" content="#FAF8F5">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?${fonts}&display=swap">
   <link rel="stylesheet" href="/src/styles/main.css">
-  <script type="application/ld+json">${schema}</script>
-</head>
-<body>
+  <script>try{if(!sessionStorage.getItem("tz-intro")&&!matchMedia("(prefers-reduced-motion: reduce)").matches&&document.documentElement.dataset.page==null)document.documentElement.classList.add("intro-on")}catch(e){}</script>`;
+}
 
-<!-- ══ INTRO ══════════════════════════════════════════════ -->
-<div id="intro" role="dialog" aria-modal="true" aria-label="${lang === "he" ? "פתיחה" : "Intro"}">
-  ${ringsSvg}
-  <div id="intro-monogram">
-    <span class="intro-tz" translate="no">TZ</span>
-    <span class="intro-sub">${lang === "he" ? "צח זריהן · WEDDING PRODUCTIONS" : "TZACH ZRIHAN · WEDDING PRODUCTIONS"}</span>
-  </div>
-  <span id="intro-heart" aria-hidden="true">♥</span>
-</div>
-<button class="intro-skip" aria-label="${esc(t.skip)}">${esc(t.skip)}</button>
+function langSwitch(lang, pathFor, cls = "") {
+  const t = L[lang];
+  return `<nav class="langs ${cls}" aria-label="${esc(t.ui.language)}">${LANGS.map((l) =>
+    `<a href="${pathFor(l)}" hreflang="${l}" lang="${l}" data-lang="${l}"${l === lang ? ' aria-current="true"' : ""}>${esc(L[l].label)}</a>`,
+  ).join('<span aria-hidden="true">·</span>')}</nav>`;
+}
 
-<!-- ══ MOBILE MENU ════════════════════════════════════════ -->
-<div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu">
-  <nav class="mobile-nav" aria-label="Navigation">
-    ${mobileNav}
-  </nav>
-  <div class="lang-switcher">${langSwitcher}</div>
-</div>
-
-<!-- ══ HEADER ═════════════════════════════════════════════ -->
-<header id="header" role="banner">
-  ${isRtl ? `
-  <!-- RTL: nav droite, logo centre, actions gauche -->
-  <nav class="header-nav" aria-label="${esc(t.nav.story)}">
-    ${navLinks}
-  </nav>` : `
-  <!-- LTR: nav gauche, logo centre, actions droite -->
-  <nav class="header-nav" aria-label="Navigation">
-    ${navLinks}
-  </nav>`}
-
-  <a href="/${lang}/" class="header-logo" aria-label="${esc(t.alts.logo)}" translate="no">
-    ${logoSvg(t)}
-  </a>
-
-  <div class="header-actions">
-    <div class="lang-switcher" aria-label="Language / שפה">
-      ${langSwitcher}
-    </div>
-    <a href="${IG_URL}" target="_blank" rel="noopener noreferrer" class="ig-link" aria-label="Instagram">
-      ${icon.ig}
-    </a>
-    <button class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
-      <span></span><span></span><span></span>
-    </button>
+function header(lang, pathFor, home) {
+  const t = L[lang];
+  const base = home ? "" : `/${lang}/`;
+  const main = ["story", "services", "weddings", "testimonials", "faq"];
+  const links = (keys) => keys.map((k) => `<a href="${base}#${k}">${esc(t.nav[k])}</a>`).join("");
+  return `<a class="skip" href="#main">${esc(t.ui.skipToContent)}</a>
+<header class="hdr${home ? " hdr--over" : ""}" data-header>
+  <nav class="hdr__nav" aria-label="${esc(t.ui.menu)}">${links(main)}</nav>
+  <a class="hdr__logo" href="/${lang}/" aria-label="${esc(t.brand.name)} · ${esc(t.brand.sub)}">${logo(t)}</a>
+  <div class="hdr__end">
+    ${langSwitch(lang, pathFor)}
+    <a class="hdr__ig" href="${S.instagram}" target="_blank" rel="noopener" aria-label="Instagram ${esc(S.instagramHandle)}">${icon.ig}</a>
+    <button class="hdr__burger" type="button" aria-expanded="false" aria-controls="menu" data-menu-open><span class="sr">${esc(t.ui.menu)}</span><i></i><i></i></button>
   </div>
 </header>
+<div class="menu" id="menu" data-menu hidden>
+  <nav class="menu__nav" aria-label="${esc(t.ui.menu)}">${[...main, "contact"].map((k, i) => `<a href="${base}#${k}" style="--i:${i}">${esc(t.nav[k])}</a>`).join("")}</nav>
+  <div class="menu__foot">${langSwitch(lang, pathFor)}<a href="${S.instagram}" target="_blank" rel="noopener">${esc(S.instagramHandle)}</a></div>
+</div>`;
+}
 
-<main id="main" tabindex="-1">
-
-<!-- ══ 1. HERO ════════════════════════════════════════════ -->
-<section id="hero" aria-labelledby="hero-title">
-  <div class="hero-media">
-    <!-- Remplacer par une vraie vidéo de mariage -->
-    <!-- <video muted loop playsinline autoplay preload="metadata" aria-hidden="true">
-      <source src="/media/hero/hero.webm" type="video/webm">
-      <source src="/media/hero/hero.mp4" type="video/mp4">
-    </video> -->
-    <!-- Fallback image -->
-    <img src="/media/hero/hero.webp"
-         alt="${esc(t.alts.hero)}"
-         fetchpriority="high"
-         style="filter:brightness(.7)">
-  </div>
-  <div class="hero-content">
-    <p class="hero-tag t-tag" aria-hidden="true">${esc(t.hero.tag)}</p>
-    <h1 id="hero-title" class="hero-title">${nl2br(esc(t.hero.h1))}</h1>
-    <a href="#contact" class="btn-outline hero-cta">${esc(t.hero.cta)}</a>
-  </div>
-  <div class="hero-scroll" aria-hidden="true"></div>
-</section>
-
-<!-- ══ 2. MANIFESTE ═══════════════════════════════════════ -->
-<section id="story" class="section" aria-labelledby="manifesto-h2">
-  <div class="container">
-    <div class="manifesto-inner">
-      <p class="t-tag" data-reveal>${esc(t.manifesto.tag)}</p>
-      <h2 id="manifesto-h2" class="t-h2" data-reveal data-delay="1">${nl2br(esc(t.manifesto.h2))}</h2>
-      <p class="t-body" data-reveal data-delay="2" style="max-width:560px;text-align:center">${nl2br(esc(t.manifesto.body))}</p>
-      <a href="#story" class="manifesto-link" data-reveal data-delay="3">${esc(t.manifesto.link)}</a>
-    </div>
-  </div>
-</section>
-
-<!-- ══ 3. LES 3 PROMESSES ═════════════════════════════════ -->
-<section id="services" class="section" aria-labelledby="promises-h2">
-  <div class="container">
-    <p class="t-tag" data-reveal>${esc(t.promises.tag)}</p>
-    <div class="promises-grid">
-      ${promiseCards}
-    </div>
-  </div>
-</section>
-
-<!-- ══ 4. CHIFFRES CLÉS ═══════════════════════════════════ -->
-<section id="stats" class="section" aria-labelledby="stats-h2">
-  <div class="container">
-    <p class="t-tag" data-reveal>${esc(t.stats.tag)}</p>
-    <h2 id="stats-h2" class="t-h2" data-reveal data-delay="1">${nl2br(esc(t.stats.h2))}</h2>
-    <div class="stats-grid">
-      ${statsItems}
-    </div>
-    <p class="stats-note">${esc(t.stats.note)}</p>
-  </div>
-</section>
-
-<!-- ══ 5. COMMENT ÇA MARCHE ══════════════════════════════ -->
-<section id="process" class="section" aria-labelledby="process-h2">
-  <div class="container">
-    <p class="t-tag" data-reveal>${esc(t.process.tag)}</p>
-    <h2 id="process-h2" class="t-h2" data-reveal data-delay="1">${nl2br(esc(t.process.h2))}</h2>
-    <div class="process-steps">
-      ${processSteps}
-    </div>
-  </div>
-</section>
-
-<!-- ══ 6. FULL-WIDTH DÉTAILS ══════════════════════════════ -->
-<section id="details" aria-labelledby="details-h2">
-  <div class="details-media" aria-hidden="true">
-    <!-- Remplacer par une photo de chuppah/cérémonie en noir et blanc -->
-    <img src="/media/details/chuppah.webp" alt="">
-  </div>
-  <div class="details-content">
-    <h2 id="details-h2" class="t-h2" data-reveal>${nl2br(esc(t.details.h2))}</h2>
-    <p class="t-body" data-reveal data-delay="1">${nl2br(esc(t.details.body))}</p>
-  </div>
-</section>
-
-<!-- ══ 7. GALERIE MARIAGES ════════════════════════════════ -->
-<section id="weddings" class="section" aria-labelledby="weddings-h2">
-  <div class="container">
-    <p class="t-tag" data-reveal>${esc(t.weddings_section.tag)}</p>
-    <h2 id="weddings-h2" class="t-h2" data-reveal data-delay="1">${nl2br(esc(t.weddings_section.h2))}</h2>
-    <div class="weddings-grid">
-      ${coupleCards}
-    </div>
-  </div>
-</section>
-
-<!-- ══ 8. TÉMOIGNAGES ════════════════════════════════════ -->
-<section id="testimonials" class="section" aria-labelledby="testimonials-h2">
-  <div class="container">
-    <p class="t-tag" data-reveal>${esc(t.testimonials.tag)}</p>
-    <h2 id="testimonials-h2" class="t-h2" data-reveal data-delay="1">${esc(t.testimonials.h2)}</h2>
-
-    <div class="testimonials-grid" style="margin-top:3rem">
-      <!-- Témoignage vidéo : Lian et Arnold -->
-      <div class="testimonial-video" data-reveal>
-        <!-- À REMPLIR avec la vraie vidéo de Lian et Arnold (DbTBO8rNmDN) -->
-        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--c-beige);flex-direction:column;gap:1rem">
-          <p class="t-tag">Lian &amp; Arnold</p>
-          <p class="t-body" style="text-align:center;font-size:.75rem"><!-- Vidéo témoignage à fournir par le client --></p>
-        </div>
-        <div class="video-overlay" role="button" tabindex="0" aria-label="Lire la vidéo">
-          <div class="play-btn">${icon.play}</div>
-        </div>
-      </div>
-
-      <!-- Emplacement pour d'autres témoignages vidéo -->
-      <div class="testimonial-video" data-reveal data-delay="1">
-        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--c-beige);flex-direction:column;gap:1rem;padding:2rem">
-          ${lang === "he"
-            ? `<p class="t-tag">המלצות · עדויות</p><p class="t-body" style="text-align:center;font-size:.75rem"><!-- להוסיף עדות וידאו --></p>`
-            : `<p class="t-tag">${esc(t.testimonials.tag)}</p><p class="t-body" style="text-align:center;font-size:.75rem"><!-- Add video testimonial here --></p>`
-          }
-        </div>
-      </div>
-
-      <!-- Témoignages texte (à remplir) -->
-      <!-- À REMPLIR avec de vrais témoignages des couples -->
-    </div>
-
-    <!-- Portrait Tzach avec citation -->
-    <div style="display:flex;flex-direction:column;align-items:center;gap:2rem;margin-top:5rem;padding-top:4rem;border-top:1px solid var(--c-border);text-align:center" data-reveal>
-      <div style="width:120px;height:120px;border-radius:50%;overflow:hidden;background:var(--c-beige)">
-        <!-- Portrait : <img src="/media/portrait/tzach.webp" alt="${esc(t.alts.portrait)}" loading="lazy"> -->
-        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:.6rem;letter-spacing:.1em;color:var(--c-taupe)">TZACH</div>
-      </div>
-      <blockquote class="t-quote" style="max-width:600px">
-        ${lang === "he"
-          ? "\"מפיק החתונות הכי שמח שתפגשו — ואני לא אתן לכם לשלם כסף שאתם לא צריכים.\""
-          : lang === "fr"
-          ? "\"Le coordinateur de mariage le plus joyeux que vous rencontrerez — et je ne vous laisserai pas payer ce dont vous n'avez pas besoin.\""
-          : lang === "es"
-          ? "\"El organizador de bodas más alegre que conoceréis — y no os dejaré pagar por lo que no necesitáis.\""
-          : "\"The happiest wedding producer you'll ever meet — and I won't let you pay for what you don't need.\""
-        }
-      </blockquote>
-      <p class="t-tag">Tzach Zrihan</p>
-    </div>
-  </div>
-</section>
-
-<!-- ══ 9. COULISSES (BTS) ═════════════════════════════════ -->
-<section id="bts" class="section" aria-labelledby="bts-h2">
-  <div class="container">
-    <div class="bts-grid">
-      <div class="bts-content" data-reveal>
-        <p class="t-tag">${esc(t.bts.tag)}</p>
-        <h2 id="bts-h2" class="t-h2">${nl2br(esc(t.bts.h2))}</h2>
-        <p class="t-body">${esc(t.bts.body)}</p>
-        <a href="${IG_URL}" target="_blank" rel="noopener noreferrer" class="manifesto-link">
-          @tzach___productions
-        </a>
-      </div>
-      <div class="bts-videos" data-reveal data-delay="1">
-        <!-- Vidéos Instagram de Tzach (DfC4MVjNtN4 et autres) -->
-        <div class="bts-media" style="background:var(--c-beige);display:flex;align-items:center;justify-content:center">
-          <p class="t-tag" style="font-size:.55rem">DfC4MVjNtN4</p>
-          <!-- <video muted loop playsinline data-autoplay poster="/media/coulisses/bts1.webp">
-            <source data-src="/media/coulisses/bts1.webm" type="video/webm">
-            <source data-src="/media/coulisses/bts1.mp4" type="video/mp4">
-          </video> -->
-        </div>
-        <div class="bts-media" style="background:var(--c-beige);display:flex;align-items:center;justify-content:center">
-          <p class="t-tag" style="font-size:.55rem">De9gNm6Nyca</p>
-          <!-- <video muted loop playsinline data-autoplay poster="/media/coulisses/bts2.webp">
-            <source data-src="/media/coulisses/bts2.webm" type="video/webm">
-            <source data-src="/media/coulisses/bts2.mp4" type="video/mp4">
-          </video> -->
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ 10. FAQ ════════════════════════════════════════════ -->
-<section id="faq" class="section" aria-labelledby="faq-h2">
-  <div class="container">
-    <p class="t-tag" data-reveal>${esc(t.faq.tag)}</p>
-    <h2 id="faq-h2" class="t-h2" data-reveal data-delay="1">${nl2br(esc(t.faq.h2))}</h2>
-    <div class="faq-list" role="list" style="max-width:860px;margin-top:3rem">
-      ${faqItems}
-    </div>
-  </div>
-</section>
-
-<!-- ══ 11. PREMIER RENDEZ-VOUS ════════════════════════════ -->
-<section id="contact" class="section" aria-labelledby="contact-h2">
-  <div class="container">
-    <div class="contact-inner">
-      <div class="contact-aside" data-reveal>
-        <p class="t-tag">${esc(t.contact.tag)}</p>
-        <h2 id="contact-h2" class="t-h2">${nl2br(esc(t.contact.h2))}</h2>
-        <p class="t-body">${esc(t.contact.body)}</p>
-        <div style="display:flex;flex-direction:column;gap:.75rem">
-          <a href="https://wa.me/${WA_NUM}" target="_blank" rel="noopener noreferrer"
-             style="display:flex;align-items:center;gap:.5rem;font-size:.75rem;color:var(--c-taupe)">
-            ${icon.wa} +972 54-981-4740
-          </a>
-          <a href="${IG_URL}" target="_blank" rel="noopener noreferrer"
-             style="display:flex;align-items:center;gap:.5rem;font-size:.75rem;color:var(--c-taupe)">
-            ${icon.ig} @tzach___productions
-          </a>
-        </div>
-      </div>
-
-      <form id="contact-form" data-wa-tpl="${waTpl}" data-reveal data-delay="1" novalidate>
-        <div class="form-grid">
-          <div class="form-group">
-            <label class="form-label" for="f-bride">${esc(f.bride)}</label>
-            <input class="form-input" type="text" id="f-bride" name="bride" autocomplete="given-name" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="f-groom">${esc(f.groom)}</label>
-            <input class="form-input" type="text" id="f-groom" name="groom" autocomplete="given-name" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="f-date">${esc(f.date)}</label>
-            <input class="form-input" type="text" id="f-date" name="date" placeholder="${lang === "he" ? "חודש/שנה" : "MM/YYYY"}">
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="f-region">${esc(f.region)}</label>
-            <input class="form-input" type="text" id="f-region" name="region" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="f-guests">${esc(f.guests)}</label>
-            <input class="form-input" type="number" id="f-guests" name="guests" min="1">
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="f-budget">${esc(f.budget)}</label>
-            <input class="form-input" type="text" id="f-budget" name="budget">
-          </div>
-          <div class="form-group full">
-            <label class="form-label">${esc(f.venue)}</label>
-            <div class="form-radio-group">
-              <label class="form-radio-label">
-                <input type="radio" name="venue" value="${esc(f.venue_yes)}"> ${esc(f.venue_yes)}
-              </label>
-              <label class="form-radio-label">
-                <input type="radio" name="venue" value="${esc(f.venue_no)}" checked> ${esc(f.venue_no)}
-              </label>
-            </div>
-          </div>
-          <div class="form-group full">
-            <label class="form-label" for="f-message">${esc(f.message)}</label>
-            <textarea class="form-textarea" id="f-message" name="message" rows="4"></textarea>
-          </div>
-        </div>
-        <button type="submit" class="btn-wa">
-          ${icon.wa}
-          ${esc(f.submit)}
-        </button>
-      </form>
-    </div>
-  </div>
-</section>
-
-</main><!-- /main -->
-
-<!-- ══ FOOTER ════════════════════════════════════════════ -->
-<footer id="footer" role="contentinfo">
-  <div class="container">
-    <div class="footer-inner">
-      <span class="footer-logo-name" translate="no">${esc(t.logo.name)}</span>
-      <p class="footer-tagline">${esc(t.footer.tagline)}</p>
-      <div class="footer-social">
-        <a href="https://wa.me/${WA_NUM}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-          ${icon.wa}
-        </a>
-        <a href="${IG_URL}" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-          ${icon.ig}
-        </a>
-        <a href="${THREADS_URL}" target="_blank" rel="noopener noreferrer" aria-label="Threads">
-          ${icon.threads}
-        </a>
-      </div>
-      <div class="footer-links">
-        ${LANGS.filter(l => l !== lang).map(l =>
-          `<a href="/${l}/" lang="${l}">${esc(L[l].langLabel)}</a>`
-        ).join("")}
-        <a href="#" onclick="return false;">${esc(t.footer.legal)}</a>
-      </div>
-      <p class="footer-copy">© ${new Date().getFullYear()} Tzach Zrihan. ${esc(t.footer.rights)}.</p>
+function footer(lang, pathFor) {
+  const t = L[lang];
+  return `<footer class="ftr">
+  <div class="wrap ftr__in">
+    ${monogram("ftr__mono")}
+    ${logo(t, "logo--ftr")}
+    <p class="ftr__tag">${esc(t.footer.tagline)}</p>
+    <ul class="ftr__social">
+      <li><a href="${WA}" target="_blank" rel="noopener">${icon.wa}<span>${esc(S.phoneIntl)}</span></a></li>
+      <li><a href="${S.instagram}" target="_blank" rel="noopener">${icon.ig}<span>Instagram</span></a></li>
+      <li><a href="${S.threads}" target="_blank" rel="noopener">${icon.threads}<span>Threads</span></a></li>
+    </ul>
+    <div class="ftr__bottom">
+      ${langSwitch(lang, pathFor)}
+      <a href="/${lang}/${LEGAL[lang]}">${esc(t.footer.legal)}</a>
+      <span>© ${new Date().getFullYear()} Tzach Zrihan · ${esc(t.ui.rights)}</span>
     </div>
   </div>
 </footer>
-
-<!-- ══ BOUTON WA FLOTTANT ════════════════════════════════ -->
-<div id="wa-float">
-  <span class="wa-float-label" aria-hidden="true">${esc(t.wa_float_label)}</span>
-  <a href="https://wa.me/${WA_NUM}"
-     target="_blank" rel="noopener noreferrer"
-     class="wa-float-btn"
-     aria-label="WhatsApp — ${esc(t.wa_float_label)}">
-    ${icon.wa}
-  </a>
-</div>
-
-<script type="module" src="/src/main.js"></script>
-</body>
-</html>`;
+<a class="wa-float" href="${WA}?text=${encodeURIComponent(t.contact.waGreeting)}" target="_blank" rel="noopener" aria-label="${esc(t.ui.waFloat)}">${icon.wa}</a>`;
 }
 
-/* ══════════════════════════════════════════════════════════
-   REDIRECT INDEX
-══════════════════════════════════════════════════════════ */
-const redirect = `<!doctype html>
+/* ---------- Page d'accueil ---------- */
+function home(lang) {
+  const t = L[lang];
+  const pathFor = (l) => `/${l}/`;
+  const cardSizes = "(max-width: 760px) 86vw, 30vw";
+
+  const promises = t.promises.items.map((p, i) => `
+      <article class="card reveal" style="--i:${i}">
+        ${pic(["promise/precision", "promise/savings", "promise/calm"][i], t.alts[["precision", "savings", "calm"][i]], { sizes: cardSizes, cls: "card__img" })}
+        <p class="card__num">${num(i)}</p>
+        <h3 class="card__title">${esc(p.title)}</h3>
+        <p class="card__label" lang="he-Latn">${esc(p.label)}</p>
+        <p class="card__text">${esc(p.text)}</p>
+      </article>`).join("");
+
+  const services = t.services.items.map((s, i) => `
+      <li class="svc reveal" style="--i:${i % 3}">
+        <span class="svc__num">${String(i + 1).padStart(2, "0")}</span>
+        <h3 class="svc__title">${esc(s.title)}</h3>
+        <p class="svc__text">${esc(s.text)}</p>
+      </li>`).join("");
+
+  const steps = t.process.steps.map((s, i) => `
+      <li class="step reveal" style="--i:${i}">
+        <span class="step__num">${String(i + 1).padStart(2, "0")}</span>
+        <h3 class="step__title">${esc(s.title)}</h3>
+        <p class="step__text">${esc(s.text)}</p>
+      </li>`).join("");
+
+  const couples = S.couples.map((c, i) => {
+    const ct = t.weddings.couples[c.id];
+    return `
+      <li class="couple reveal" style="--i:${i % 3}">
+        <button class="couple__btn" type="button" data-open="couple-${c.id}" aria-haspopup="dialog">
+          ${pic(`couples/${c.id}/cover`, "", { sizes: cardSizes, cls: "couple__img" })}
+          <span class="couple__meta">
+            <span class="couple__num">${num(i)}</span>
+            <span class="couple__names">${esc(ct.names)}</span>
+            <span class="couple__place">${esc(ct.place)}${c.months ? ` · ${c.months} ${esc(t.ui.monthsWith)}` : ""}</span>
+          </span>
+        </button>
+      </li>`;
+  }).join("");
+
+  const coupleDialogs = S.couples.map((c) => {
+    const ct = t.weddings.couples[c.id];
+    const slides = c.gallery.map((g) => `<li>${pic(`couples/${c.id}/${g}`, `${t.alts.gallery} ${ct.names}`, { sizes: c.landscape ? "(max-width: 900px) 92vw, 62vw" : "(max-width: 900px) 80vw, 36vw" })}</li>`).join("");
+    const video = c.video ? `<li class="slide-video${c.videoLandscape ? " is-wide" : ""}"><video controls playsinline preload="none" poster="${src(`couples/${c.id}/${c.gallery[0]}`, M[`couples/${c.id}/${c.gallery[0]}`].widths[0])}" data-src="/media/video/${c.video}.mp4" aria-label="${esc(ct.names)}"></video></li>` : "";
+    return `
+<dialog class="dlg dlg--couple" id="couple-${c.id}" aria-labelledby="couple-${c.id}-t" data-lenis-prevent>
+  <div class="dlg__in">
+    <button class="dlg__close" type="button" data-close aria-label="${esc(t.ui.close)}">${icon.close}</button>
+    <div class="dlg__media${c.landscape ? " is-wide" : ""}">
+      <ul class="slides" data-slides tabindex="0" aria-label="${esc(ct.names)}">${slides}${video}</ul>
+      <div class="slides__nav">
+        <button type="button" data-slide="-1" aria-label="${esc(t.ui.prev)}">${icon.prev}</button>
+        <button type="button" data-slide="1" aria-label="${esc(t.ui.next)}">${icon.next}</button>
+      </div>
+    </div>
+    <div class="dlg__text">
+      <p class="tag">${esc(ct.place)}</p>
+      <h3 class="dlg__title" id="couple-${c.id}-t">${esc(ct.names)}</h3>
+      ${c.months ? `<p class="dlg__months"><strong>${c.months}</strong> ${esc(t.ui.monthsWith)}</p>` : ""}
+      <p class="dlg__story">${esc(ct.story)}</p>
+      ${c.credit ? `<p class="dlg__credit"><span>${esc(t.ui.credits)}</span> <bdi dir="ltr">${esc(c.credit)}</bdi></p>` : ""}
+      <a class="link" href="${c.post}" target="_blank" rel="noopener">${esc(t.ui.viewPost)}</a>
+    </div>
+  </div>
+</dialog>`;
+  }).join("");
+
+  const months = S.months.map((m, i) => {
+    const mt = t.months.items[m.couple];
+    return `
+      <li class="month reveal" style="--i:${i}">
+        <p class="month__value"><span>${m.value}</span> ${esc(t.months.unit)}</p>
+        <blockquote class="month__quote"><p>${esc(mt.quote)}</p></blockquote>
+        <p class="month__names"><a href="${m.post}" target="_blank" rel="noopener">${esc(mt.names)}</a></p>
+      </li>`;
+  }).join("");
+  const stats = [
+    S.stats.weddings != null && `<li><span>${esc(S.stats.weddings)}</span>${esc(t.months.weddings)}</li>`,
+    S.stats.savings != null && `<li><span>${esc(S.stats.savings)}</span>${esc(t.months.savings)}</li>`,
+  ].filter(Boolean).join("");
+
+  const bts = S.bts.map((b, i) => `
+      <li class="reel reveal" style="--i:${i}">
+        <button class="reel__btn" type="button" data-play="/media/video/${b.video}.mp4" data-preview aria-label="${esc(t.ui.play)} : ${esc(t.bts.items[b.id])}">
+          ${pic(b.poster, "", { sizes: "(max-width: 760px) 44vw, 22vw", cls: "reel__img" })}
+          <video class="reel__preview" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+          <span class="reel__play">${icon.play}</span>
+        </button>
+        <p class="reel__title">${esc(t.bts.items[b.id])}</p>
+      </li>`).join("");
+
+  const faq = t.faq.items.map((f) => `
+      <details class="qa reveal">
+        <summary><span>${esc(f.q)}</span>${icon.plus}</summary>
+        <p>${esc(f.a)}</p>
+      </details>`).join("");
+
+  const f = t.contact.fields;
+  const opts = (arr) => `<option value="">—</option>` + arr.map((o) => `<option>${esc(o)}</option>`).join("");
+
+  return `${head(lang, { title: t.meta.title, description: t.meta.description, pathFor })}
+  ${schema(lang)}
+</head>
+<body>
+<div class="intro" data-intro aria-hidden="true">
+  <svg class="intro__rings" viewBox="0 0 160 120">
+    <circle class="ring ring--a" cx="64" cy="60" r="34"/>
+    <circle class="ring ring--b" cx="96" cy="60" r="34"/>
+    <g class="intro__mono" transform="translate(64 44) scale(.5)">${MONO_PATHS}</g>
+  </svg>
+  <p class="intro__line" translate="no">${esc(t.intro.line)}</p>
+  ${heart}
+  <button class="intro__skip" type="button" data-intro-skip>${esc(t.ui.skip)}</button>
+</div>
+${header(lang, pathFor, true)}
+<main id="main">
+
+<section class="hero" aria-labelledby="hero-t">
+  <div class="hero__media">
+    ${heroPoster(t.alts.hero)}
+    <video class="hero__video" muted loop playsinline preload="none" aria-hidden="true" data-hero-video data-portrait="${PORTRAIT}">
+      <source data-src="/media/video/hero.webm" data-src-v="/media/video/hero-v.webm" type="video/webm">
+      <source data-src="/media/video/hero.mp4" data-src-v="/media/video/hero-v.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero__content">
+    <h1 class="tag tag--light" id="hero-t">${esc(t.hero.tag)}</h1>
+    <p class="hero__title">${br(t.hero.title)}</p>
+    <a class="btn btn--light" href="#contact">${esc(t.hero.cta)}</a>
+  </div>
+  <button class="hero__toggle" type="button" data-hero-toggle aria-pressed="false" data-pause="${esc(t.ui.pause)}" data-resume="${esc(t.ui.resume)}" aria-label="${esc(t.ui.pause)}" hidden><i></i><i></i></button>
+  <span class="hero__line" aria-hidden="true"></span>
+</section>
+
+<section class="manifesto wrap" aria-labelledby="manifesto-t">
+  <p class="tag reveal">${esc(t.manifesto.tag)}</p>
+  <h2 class="h2 reveal" id="manifesto-t">${br(t.manifesto.title)}</h2>
+  <p class="lead reveal">${esc(t.manifesto.text)}</p>
+  <a class="link reveal" href="#story">${esc(t.manifesto.link)}</a>
+</section>
+
+<section class="promises wrap" aria-labelledby="promises-t">
+  <div class="sec-head"><h2 class="tag" id="promises-t">${esc(t.promises.tag)}</h2><span class="sec-head__rule"></span></div>
+  <div class="cards">${promises}
+  </div>
+</section>
+
+<section class="about" id="story" aria-labelledby="about-t">
+  <div class="wrap about__grid">
+    <div class="about__media reveal">
+      ${pic("portrait/tzach", t.alts.portrait, { sizes: "(max-width: 900px) 70vw, 30vw", cls: "about__portrait" })}
+      <button class="about__video" type="button" data-play="/media/video/pitch.mp4" aria-label="${esc(t.ui.play)} : ${esc(t.about.videoLabel)}">
+        ${pic("video/pitch", "", { sizes: "160px" })}
+        <span class="reel__play">${icon.play}</span>
+      </button>
+    </div>
+    <div class="about__text">
+      <p class="tag reveal">${esc(t.about.tag)}</p>
+      <h2 class="h2 reveal" id="about-t">${br(t.about.title)}</h2>
+      ${t.about.paras.map((p) => `<p class="reveal">${esc(p)}</p>`).join("")}
+      <blockquote class="quote reveal"><p>${esc(t.about.quote)}</p><footer>${esc(t.about.sign)}</footer></blockquote>
+      <div class="define reveal">
+        <h3>${esc(t.about.definitionTitle)}</h3>
+        <p>${esc(t.about.definition)}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services wrap" id="services" aria-labelledby="services-t">
+  <p class="tag reveal">${esc(t.services.tag)}</p>
+  <h2 class="h2 reveal" id="services-t">${br(t.services.title)}</h2>
+  <ul class="svc-grid">${services}
+  </ul>
+</section>
+
+<section class="process" aria-labelledby="process-t">
+  <div class="wrap">
+    <p class="tag tag--light reveal">${esc(t.process.tag)}</p>
+    <h2 class="h2 reveal" id="process-t">${br(t.process.title)}</h2>
+    <ol class="steps">${steps}
+    </ol>
+  </div>
+</section>
+
+<section class="details" aria-labelledby="details-t">
+  ${pic("details/chuppah", t.alts.chuppah, { cls: "details__img" })}
+  <div class="details__content">
+    <h2 class="h2 reveal" id="details-t">${br(t.details.title)}</h2>
+    <p class="reveal">${esc(t.details.text)}</p>
+  </div>
+</section>
+
+<section class="weddings wrap" id="weddings" aria-labelledby="weddings-t">
+  <p class="tag reveal">${esc(t.weddings.tag)}</p>
+  <h2 class="h2 reveal" id="weddings-t">${br(t.weddings.title)}</h2>
+  <ul class="couples">${couples}
+  </ul>
+</section>
+
+<section class="months" aria-labelledby="months-t">
+  <div class="wrap">
+    <p class="tag reveal">${esc(t.months.tag)}</p>
+    <h2 class="h2 reveal" id="months-t">${br(t.months.title)}</h2>
+    <ol class="months__list">${months}
+    </ol>
+    ${stats ? `<ul class="stats">${stats}</ul>` : "<!-- Chiffres clés (nombre de mariages, économies moyennes) : à renseigner dans data/site.json une fois confirmés par Tzach -->"}
+  </div>
+</section>
+
+<section class="testimonials wrap" id="testimonials" aria-labelledby="testimonials-t">
+  <div class="testimonials__grid">
+    <div class="testimonials__text">
+      <p class="tag reveal">${esc(t.testimonials.tag)}</p>
+      <h2 class="h2 reveal" id="testimonials-t">${esc(t.testimonials.title)}</h2>
+      <p class="reveal"><strong>${esc(t.testimonials.lian.names)}</strong><br>${esc(t.testimonials.lian.caption)}</p>
+      <a class="link reveal" href="${S.instagram}" target="_blank" rel="noopener">${esc(t.testimonials.more)}</a>
+      <!-- À REMPLIR avec de vrais témoignages (texte ou vidéo) fournis par Tzach et validés par les couples -->
+    </div>
+    <button class="testimonials__video reveal" type="button" data-play="/media/video/lian-arnold.mp4" aria-label="${esc(t.ui.play)} : ${esc(t.testimonials.lian.names)}">
+      ${pic("video/lian-arnold", "", { sizes: "(max-width: 760px) 70vw, 28vw" })}
+      <span class="reel__play reel__play--lg">${icon.play}</span>
+    </button>
+  </div>
+</section>
+
+<section class="bts" aria-labelledby="bts-t">
+  <div class="wrap">
+    <p class="tag reveal">${esc(t.bts.tag)}</p>
+    <h2 class="h2 reveal" id="bts-t">${br(t.bts.title)}</h2>
+    <p class="lead lead--start reveal">${esc(t.bts.text)}</p>
+    <ul class="reels">${bts}
+    </ul>
+  </div>
+</section>
+
+<section class="faq wrap" id="faq" aria-labelledby="faq-t">
+  <div class="faq__head">
+    <p class="tag reveal">${esc(t.faq.tag)}</p>
+    <h2 class="h2 reveal" id="faq-t">${br(t.faq.title)}</h2>
+  </div>
+  <div class="faq__list">${faq}
+  </div>
+</section>
+
+<section class="contact" id="contact" aria-labelledby="contact-t">
+  <div class="wrap contact__grid">
+    <div class="contact__intro">
+      <p class="tag reveal">${esc(t.contact.tag)}</p>
+      <h2 class="h2 reveal" id="contact-t">${br(t.contact.title)}</h2>
+      <p class="reveal">${esc(t.contact.text)}</p>
+      <p class="contact__direct reveal">${esc(t.contact.direct)} : <a href="${WA}" target="_blank" rel="noopener"><bdi dir="ltr">${esc(S.phoneIntl)}</bdi></a></p>
+    </div>
+    <form class="form reveal" data-form novalidate data-wa="${S.wa}" data-greeting="${esc(t.contact.waGreeting)}" data-labels="${esc(JSON.stringify(t.contact.waLabels))}" data-lang="${lang}">
+      <div class="field field--full">
+        <label for="f-names">${esc(f.names)}</label>
+        <input id="f-names" name="names" autocomplete="off" placeholder="${esc(f.namesHint)}" required aria-describedby="f-names-err">
+        <p class="field__err" id="f-names-err" role="alert" hidden>${esc(f.required)}</p>
+      </div>
+      <div class="field">
+        <label for="f-date">${esc(f.date)}</label>
+        <input id="f-date" name="date" type="month" min="${new Date().toISOString().slice(0, 7)}">
+      </div>
+      <div class="field">
+        <label for="f-region">${esc(f.region)}</label>
+        <select id="f-region" name="region">${opts(t.contact.regions)}</select>
+      </div>
+      <div class="field">
+        <label for="f-guests">${esc(f.guests)}</label>
+        <input id="f-guests" name="guests" type="number" inputmode="numeric" min="10" max="2000" step="10">
+      </div>
+      <div class="field">
+        <label for="f-budget">${esc(f.budget)}</label>
+        <select id="f-budget" name="budget">${opts(t.contact.budgets)}</select>
+      </div>
+      <fieldset class="field field--full field--radio">
+        <legend>${esc(f.venue)}</legend>
+        <label><input type="radio" name="venue" value="${esc(f.venueYes)}"> ${esc(f.venueYes)}</label>
+        <label><input type="radio" name="venue" value="${esc(f.venueNo)}"> ${esc(f.venueNo)}</label>
+      </fieldset>
+      <div class="field field--full">
+        <label for="f-message">${esc(f.message)}</label>
+        <textarea id="f-message" name="message" rows="3"></textarea>
+      </div>
+      <button class="btn btn--dark" type="submit">${icon.wa}<span>${esc(f.submit)}</span></button>
+    </form>
+  </div>
+</section>
+
+</main>
+${footer(lang, pathFor)}
+${coupleDialogs}
+<dialog class="dlg dlg--player" id="player" aria-label="${esc(t.ui.play)}" data-lenis-prevent>
+  <button class="dlg__close" type="button" data-close aria-label="${esc(t.ui.close)}">${icon.close}</button>
+  <video controls playsinline preload="none" data-player></video>
+</dialog>
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>
+`;
+}
+
+/* ---------- Page légale ---------- */
+function legal(lang) {
+  const t = L[lang];
+  const pathFor = (l) => `/${l}/${LEGAL[l]}`;
+  return `${head(lang, { title: t.meta.legalTitle, description: t.meta.description, pathFor })}
+</head>
+<body class="page-legal">
+${header(lang, pathFor, false)}
+<main id="main" class="legal wrap">
+  <h1 class="h2">${esc(t.legal.title)}</h1>
+  ${t.legal.sections.map((s) => `<section><h2>${esc(s.h)}</h2><p>${esc(s.p)}</p></section>`).join("\n  ")}
+  <p><a class="link" href="/${lang}/">${esc(t.ui.home)}</a></p>
+</main>
+${footer(lang, pathFor)}
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>
+`;
+}
+
+/* ---------- Redirection racine ---------- */
+const root = `<!doctype html>
 <html lang="he" dir="rtl">
 <head>
   <meta charset="utf-8">
-  <title>Tzach Zrihan — Wedding Productions</title>
-  <meta name="robots" content="noindex">
-  <meta http-equiv="refresh" content="0;url=/he/">
-  ${FONTS.split("\n").slice(0,2).join("\n")}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tzach Zrihan · Wedding Productions</title>
+  <meta name="description" content="${esc(L.he.meta.description)}">
+  <link rel="canonical" href="${SITE}/he/">
+  ${LANGS.map((l) => `<link rel="alternate" hreflang="${l}" href="${SITE}/${l}/">`).join("\n  ")}
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <script>
-    (function() {
-      try {
-        var langs = ${JSON.stringify(LANGS)};
-        var saved = localStorage.getItem("tz-lang");
-        if (saved && langs.includes(saved)) { location.replace("/" + saved + "/"); return; }
-        var nav = navigator.language || navigator.userLanguage || "";
-        nav = nav.split("-")[0].toLowerCase();
-        if (langs.includes(nav)) { location.replace("/" + nav + "/"); return; }
-      } catch(e) {}
-      location.replace("/he/");
+    (function () {
+      var langs = ${JSON.stringify(LANGS)}, l = null;
+      try { l = localStorage.getItem("tz-lang"); } catch (e) {}
+      if (langs.indexOf(l) < 0) {
+        var nav = (navigator.languages || [navigator.language || ""]).map(function (x) { return String(x).slice(0, 2).toLowerCase(); });
+        for (var i = 0; i < nav.length && !l; i++) if (nav[i] === "iw") l = "he"; else if (langs.indexOf(nav[i]) >= 0) l = nav[i];
+      }
+      location.replace("/" + (langs.indexOf(l) >= 0 ? l : "he") + "/" + location.hash);
     })();
   </script>
+  <style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#FAF8F5;color:#1A1715;font:14px/1.6 system-ui,sans-serif}nav{display:flex;gap:1.5rem}a{color:inherit}</style>
 </head>
-<body style="background:#FAF8F5;display:flex;align-items:center;justify-content:center;min-height:100vh;font-family:sans-serif;">
-  <a href="/he/" style="color:#1A1715;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none">
-    TZACH ZRIHAN · WEDDING PRODUCTIONS
-  </a>
+<body>
+  <nav>${LANGS.map((l) => `<a href="/${l}/" lang="${l}">${esc(L[l].label)}</a>`).join("")}</nav>
 </body>
-</html>`;
+</html>
+`;
 
-/* ══════════════════════════════════════════════════════════
-   SITEMAP
-══════════════════════════════════════════════════════════ */
+/* ---------- Fichiers publics ---------- */
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
-${LANGS.map(l => `  <url>
-    <loc>${SITE}/${l}/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>${l === "he" ? "1.0" : "0.8"}</priority>
-    ${LANGS.map(al => `<xhtml:link rel="alternate" hreflang="${al}" href="${SITE}/${al}/"/>`).join("\n    ")}
-  </url>`).join("\n")}
-</urlset>`;
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${[["", "1.0"], ["legal", "0.2"]].flatMap(([kind, prio]) => LANGS.map((l) => {
+  const p = (x) => `${SITE}/${x}/${kind ? LEGAL[x] : ""}`;
+  return `  <url>
+    <loc>${p(l)}</loc>
+    <lastmod>${new Date().toISOString().slice(0, 10)}</lastmod>
+    <priority>${prio}</priority>
+${LANGS.map((x) => `    <xhtml:link rel="alternate" hreflang="${x}" href="${p(x)}"/>`).join("\n")}
+    <xhtml:link rel="alternate" hreflang="x-default" href="${p("he")}"/>
+  </url>`;
+})).join("\n")}
+</urlset>
+`;
 
-/* ══════════════════════════════════════════════════════════
-   ROBOTS
-══════════════════════════════════════════════════════════ */
 const robots = `User-agent: *
 Allow: /
-Sitemap: ${SITE}/sitemap.xml`;
 
-/* ══════════════════════════════════════════════════════════
-   FAVICON SVG (monogramme TZ)
-══════════════════════════════════════════════════════════ */
-const favicon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" fill="#1A1715"/>
-  <text x="16" y="22" text-anchor="middle" font-family="Jost,sans-serif" font-weight="200" font-size="16" fill="#FAF8F5" letter-spacing="1">TZ</text>
-</svg>`;
+Sitemap: ${SITE}/sitemap.xml
+`;
 
-/* ══════════════════════════════════════════════════════════
-   ÉCRITURE DES FICHIERS
-══════════════════════════════════════════════════════════ */
-await write("index.html", redirect);
+const llms = `# Tzach Zrihan · Wedding Productions (צח זריהן · מפיק חתונות)
 
-for (const lang of LANGS) {
-  await write(`${lang}/index.html`, buildPage(lang));
+> Independent wedding producer (in Hebrew: mafik chatunot chitzoni) based in Israel. Tzach accompanies engaged couples for several months (typically 5 to 10), chooses and negotiates the venue and vendors on their behalf so they do not pay for what they do not need, plans the budget, timeline and chuppah briefing, and runs the wedding on the day itself.
+
+- Languages of the website: Hebrew (default), English, French, Spanish
+- Area served: Israel (couples living abroad welcome)
+- Contact: WhatsApp ${S.phoneIntl} (${WA}) · Instagram ${S.instagramHandle} (${S.instagram})
+- Pricing: on request, after a first meeting
+
+## Pages
+- [עברית](${SITE}/he/)
+- [English](${SITE}/en/)
+- [Français](${SITE}/fr/)
+- [Español](${SITE}/es/)
+
+## Real examples (from Tzach's Instagram)
+- Eden & Tevel: 10 months of planning
+- Shir & Tal: 8 months of planning
+- Yuval & Idan: 5 months of planning (Kav HaMaim)
+- Limor & Oded: second wedding on Poleg Beach, personal branding, open meat buffet
+`;
+
+const MONO_SVG = (stroke, bg, w = 2) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">${bg ? `<rect width="64" height="64" fill="${bg}"/>` : ""}<g fill="none" stroke="${stroke}" stroke-width="${w}" stroke-linecap="square">${MONO_PATHS}</g></svg>`;
+
+/* ---------- Écriture ---------- */
+const out = async (p, s) => {
+  const f = path.join(ROOT, p);
+  await mkdir(path.dirname(f), { recursive: true });
+  await writeFile(f, s, "utf8");
+};
+await out("index.html", root);
+for (const l of LANGS) {
+  await out(`${l}/index.html`, home(l));
+  await out(`${l}/${LEGAL[l]}index.html`, legal(l));
 }
+await out("public/sitemap.xml", sitemap);
+await out("public/robots.txt", robots);
+await out("public/llms.txt", llms);
+await out("public/favicon.svg", MONO_SVG("#FAF8F5", "#1A1715", 3.2));
+await out("public/brand/monogram.svg", MONO_SVG("#1A1715", null, 1.6));
+await out("public/brand/logo-he.svg", `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80"><text x="160" y="40" text-anchor="middle" font-family="Heebo, Arial, sans-serif" font-weight="400" font-size="30" letter-spacing="3" fill="#1A1715">צח זריהן</text><text x="160" y="66" text-anchor="middle" font-family="Jost, Arial, sans-serif" font-weight="400" font-size="10" letter-spacing="5" fill="#8E857A">WEDDING PRODUCTIONS</text></svg>`);
+await out("public/brand/logo-latin.svg", `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 80"><text x="180" y="40" text-anchor="middle" font-family="Jost, Arial, sans-serif" font-weight="400" font-size="24" letter-spacing="9" fill="#1A1715">TZACH ZRIHAN</text><text x="180" y="66" text-anchor="middle" font-family="Jost, Arial, sans-serif" font-weight="400" font-size="10" letter-spacing="5" fill="#8E857A">WEDDING PRODUCTIONS</text></svg>`);
 
-await write("public/sitemap.xml", sitemap);
-await write("public/robots.txt", robots);
-await write("public/favicon.svg", favicon);
-
-console.log("✓ Génération terminée —", LANGS.length, "langues");
+// Icônes PNG (une seule fois : elles sont versionnées avec le site).
+const has = (p) => access(path.join(ROOT, p)).then(() => true, () => false);
+if (!(await has("public/apple-touch-icon.png")) || !(await has("public/brand/monogram.png"))) {
+  const { default: sharp } = await import("sharp");
+  await sharp(Buffer.from(MONO_SVG("#FAF8F5", "#1A1715", 2.6))).resize(180).png().toFile(path.join(ROOT, "public/apple-touch-icon.png"));
+  await sharp(Buffer.from(MONO_SVG("#1A1715", "#FAF8F5", 1.8))).resize(512).png().toFile(path.join(ROOT, "public/brand/monogram.png"));
+}
+console.log(`✓ pages générées : ${LANGS.join(", ")} (+ pages légales, sitemap, robots, llms.txt)`);

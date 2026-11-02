@@ -1,0 +1,68 @@
+{
+  "url": "https://tzach-zrihan.vercel.app",
+  "phone": "054-981-4740",
+  "phoneIntl": "+972 54-981-4740",
+  "wa": "972549814740",
+  "instagram": "https://www.instagram.com/tzach___productions/",
+  "instagramHandle": "@tzach___productions",
+  "threads": "https://www.threads.com/@tzach___productions",
+  "stats": {
+    "_note": "À remplir avec les chiffres confirmés par Tzach (null = bloc masqué sur le site)",
+    "weddings": null,
+    "savings": null
+  },
+  "couples": [
+    {
+      "id": "sivan-daniel",
+      "gallery": ["1", "2", "3", "4", "5"],
+      "credit": "Ilan Magen · @niv_brig_photography",
+      "post": "https://www.instagram.com/p/De_5y3cjNIC/"
+    },
+    {
+      "id": "yuval-idan",
+      "months": 5,
+      "gallery": ["1", "2", "3"],
+      "landscape": true,
+      "credit": "@nadav_margalit_wed · @meni_shitrit · @kav.hamaim",
+      "post": "https://www.instagram.com/p/DcN-z4ijRha/"
+    },
+    {
+      "id": "limor-oded",
+      "gallery": ["1", "2", "3"],
+      "video": "limor-oded",
+      "post": "https://www.instagram.com/p/Deb2XsQNAq9/"
+    },
+    {
+      "id": "digmi",
+      "gallery": ["1", "2", "3"],
+      "credit": "@ayelet.digmi",
+      "post": "https://www.instagram.com/p/De4yrNbgOxf/"
+    },
+    {
+      "id": "ofir-or",
+      "gallery": ["1", "2", "3"],
+      "landscape": true,
+      "video": "ofir-or",
+      "videoLandscape": true,
+      "credit": "@rb_social_",
+      "post": "https://www.instagram.com/p/DdPJIymtCPa/"
+    },
+    {
+      "id": "shachar-eyal",
+      "gallery": ["1"],
+      "video": "shachar-eyal",
+      "post": "https://www.instagram.com/p/DfCSNjWjTSr/"
+    }
+  ],
+  "months": [
+    { "value": 10, "couple": "eden-tevel", "post": "https://www.instagram.com/p/DetbaA0jZ8R/" },
+    { "value": 8, "couple": "shir-tal", "post": "https://www.instagram.com/p/DegcQqqkZlr/" },
+    { "value": 5, "couple": "yuval-idan", "post": "https://www.instagram.com/p/DcN-z4ijRha/" }
+  ],
+  "bts": [
+    { "id": "parents", "video": "parents", "poster": "bts/parents" },
+    { "id": "briefing", "video": "briefing", "poster": "bts/briefing" },
+    { "id": "details", "video": "details", "poster": "bts/details" },
+    { "id": "order", "video": "order", "poster": "bts/order" }
+  ]
+}

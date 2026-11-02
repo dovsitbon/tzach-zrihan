@@ -1,40 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://tzach-zrihan.vercel.app/he/</loc>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-11-02</lastmod>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="he" href="https://tzach-zrihan.vercel.app/he/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://tzach-zrihan.vercel.app/en/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://tzach-zrihan.vercel.app/fr/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://tzach-zrihan.vercel.app/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tzach-zrihan.vercel.app/he/"/>
   </url>
   <url>
     <loc>https://tzach-zrihan.vercel.app/en/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-11-02</lastmod>
+    <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="he" href="https://tzach-zrihan.vercel.app/he/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://tzach-zrihan.vercel.app/en/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://tzach-zrihan.vercel.app/fr/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://tzach-zrihan.vercel.app/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tzach-zrihan.vercel.app/he/"/>
   </url>
   <url>
     <loc>https://tzach-zrihan.vercel.app/fr/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-11-02</lastmod>
+    <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="he" href="https://tzach-zrihan.vercel.app/he/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://tzach-zrihan.vercel.app/en/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://tzach-zrihan.vercel.app/fr/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://tzach-zrihan.vercel.app/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tzach-zrihan.vercel.app/he/"/>
   </url>
   <url>
     <loc>https://tzach-zrihan.vercel.app/es/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-11-02</lastmod>
+    <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="he" href="https://tzach-zrihan.vercel.app/he/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://tzach-zrihan.vercel.app/en/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://tzach-zrihan.vercel.app/fr/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://tzach-zrihan.vercel.app/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tzach-zrihan.vercel.app/he/"/>
+  </url>
+  <url>
+    <loc>https://tzach-zrihan.vercel.app/he/privacy/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.2</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://tzach-zrihan.vercel.app/he/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tzach-zrihan.vercel.app/en/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tzach-zrihan.vercel.app/fr/mentions-legales/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tzach-zrihan.vercel.app/es/aviso-legal/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tzach-zrihan.vercel.app/he/privacy/"/>
+  </url>
+  <url>
+    <loc>https://tzach-zrihan.vercel.app/en/privacy/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.2</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://tzach-zrihan.vercel.app/he/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tzach-zrihan.vercel.app/en/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tzach-zrihan.vercel.app/fr/mentions-legales/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tzach-zrihan.vercel.app/es/aviso-legal/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tzach-zrihan.vercel.app/he/privacy/"/>
+  </url>
+  <url>
+    <loc>https://tzach-zrihan.vercel.app/fr/mentions-legales/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.2</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://tzach-zrihan.vercel.app/he/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tzach-zrihan.vercel.app/en/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tzach-zrihan.vercel.app/fr/mentions-legales/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tzach-zrihan.vercel.app/es/aviso-legal/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tzach-zrihan.vercel.app/he/privacy/"/>
+  </url>
+  <url>
+    <loc>https://tzach-zrihan.vercel.app/es/aviso-legal/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.2</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://tzach-zrihan.vercel.app/he/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tzach-zrihan.vercel.app/en/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tzach-zrihan.vercel.app/fr/mentions-legales/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tzach-zrihan.vercel.app/es/aviso-legal/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tzach-zrihan.vercel.app/he/privacy/"/>
   </url>
 </urlset>

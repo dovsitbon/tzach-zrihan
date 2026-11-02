@@ -1,0 +1,335 @@
+{
+ "hero/poster": {
+  "w": 1916,
+  "h": 1078,
+  "widths": [
+   800,
+   1280
+  ]
+ },
+ "hero/poster-v": {
+  "w": 1080,
+  "h": 1920,
+  "widths": [
+   540,
+   828,
+   1080
+  ]
+ },
+ "portrait/tzach": {
+  "w": 956,
+  "h": 956,
+  "widths": [
+   480,
+   720
+  ]
+ },
+ "promise/precision": {
+  "w": 3072,
+  "h": 4096,
+  "widths": [
+   480,
+   800,
+   1200
+  ]
+ },
+ "promise/savings": {
+  "w": 1440,
+  "h": 1920,
+  "widths": [
+   480,
+   800,
+   1200
+  ]
+ },
+ "promise/calm": {
+  "w": 1440,
+  "h": 1920,
+  "widths": [
+   480,
+   800,
+   1200
+  ]
+ },
+ "details/chuppah": {
+  "w": 2666,
+  "h": 1778,
+  "widths": [
+   800,
+   1400,
+   2200
+  ]
+ },
+ "about/briefing": {
+  "w": 1080,
+  "h": 1440,
+  "widths": [
+   480,
+   800
+  ]
+ },
+ "couples/sivan-daniel/cover": {
+  "w": 1281,
+  "h": 1922,
+  "widths": [
+   480,
+   800,
+   1200
+  ]
+ },
+ "couples/sivan-daniel/1": {
+  "w": 1440,
+  "h": 1920,
+  "widths": [
+   480,
+   900,
+   1400
+  ]
+ },
+ "couples/sivan-daniel/2": {
+  "w": 1440,
+  "h": 1922,
+  "widths": [
+   480,
+   900,
+   1400
+  ]
+ },
+ "couples/sivan-daniel/3": {
+  "w": 1440,
+  "h": 1923,
+  "widths": [
+   480,
+   900,
+   1400
+  ]
+ },
+ "couples/sivan-daniel/4": {
+  "w": 1440,
+  "h": 1920,
+  "widths": [
+   480,
+   900,
+   1400
+  ]
+ },
+ "couples/sivan-daniel/5": {
+  "w": 1440,
+  "h": 1920,
+  "widths": [
+   480,
+   900,
+   1400
+  ]
+ },
+ "couples/digmi/cover": {
+  "w": 2731,
+  "h": 4096,
+  "widths": [
+   480,
+   800,
+   1200
+  ]
+ },
+ "couples/digmi/1": {
+  "w": 3072,
+  "h": 4096,
+  "widths": [
+   480,
+   900,
+   1400
+  ]
+ },
+ "couples/digmi/2": {
+  "w": 3072,
+  "h": 4095,
+  "widths": [
+   480,
+   900,
+   1400
+  ]
+ },
+ "couples/digmi/3": {
+  "w": 3072,
+  "h": 4095,
+  "widths": [
+   480,
+   900,
+   1400
+  ]
+ },
+ "couples/yuval-idan/cover": {
+  "w": 1185,
+  "h": 1778,
+  "widths": [
+   480,
+   800
+  ]
+ },
+ "couples/yuval-idan/1": {
+  "w": 2667,
+  "h": 1778,
+  "widths": [
+   600,
+   1200,
+   1800
+  ]
+ },
+ "couples/yuval-idan/2": {
+  "w": 2667,
+  "h": 1778,
+  "widths": [
+   600,
+   1200,
+   1800
+  ]
+ },
+ "couples/yuval-idan/3": {
+  "w": 2666,
+  "h": 1778,
+  "widths": [
+   600,
+   1200,
+   1800
+  ]
+ },
+ "couples/shachar-eyal/cover": {
+  "w": 2016,
+  "h": 3024,
+  "widths": [
+   480,
+   800,
+   1080
+  ]
+ },
+ "couples/shachar-eyal/1": {
+  "w": 1080,
+  "h": 1440,
+  "widths": [
+   480,
+   900
+  ]
+ },
+ "couples/limor-oded/cover": {
+  "w": 1080,
+  "h": 1620,
+  "widths": [
+   480,
+   800,
+   1080
+  ]
+ },
+ "couples/limor-oded/1": {
+  "w": 1080,
+  "h": 1920,
+  "widths": [
+   480,
+   900
+  ]
+ },
+ "couples/limor-oded/2": {
+  "w": 1080,
+  "h": 1920,
+  "widths": [
+   480,
+   900
+  ]
+ },
+ "couples/limor-oded/3": {
+  "w": 1080,
+  "h": 1920,
+  "widths": [
+   480,
+   900
+  ]
+ },
+ "couples/ofir-or/cover": {
+  "w": 617,
+  "h": 926,
+  "widths": [
+   480
+  ]
+ },
+ "couples/ofir-or/1": {
+  "w": 1916,
+  "h": 926,
+  "widths": [
+   600,
+   1200,
+   1600
+  ]
+ },
+ "couples/ofir-or/2": {
+  "w": 1916,
+  "h": 926,
+  "widths": [
+   600,
+   1200,
+   1600
+  ]
+ },
+ "couples/ofir-or/3": {
+  "w": 1916,
+  "h": 926,
+  "widths": [
+   600,
+   1200,
+   1600
+  ]
+ },
+ "bts/parents": {
+  "w": 1080,
+  "h": 1920,
+  "widths": [
+   400,
+   720
+  ]
+ },
+ "bts/briefing": {
+  "w": 1080,
+  "h": 1920,
+  "widths": [
+   400,
+   720
+  ]
+ },
+ "bts/details": {
+  "w": 1080,
+  "h": 1920,
+  "widths": [
+   400,
+   720
+  ]
+ },
+ "bts/order": {
+  "w": 1080,
+  "h": 1920,
+  "widths": [
+   400,
+   720
+  ]
+ },
+ "video/pitch": {
+  "w": 1080,
+  "h": 1920,
+  "widths": [
+   400,
+   720
+  ]
+ },
+ "video/lian-arnold": {
+  "w": 1080,
+  "h": 1920,
+  "widths": [
+   400,
+   720
+  ]
+ },
+ "og/cover": {
+  "w": 1916,
+  "h": 1006,
+  "widths": [
+   1200
+  ]
+ }
+}

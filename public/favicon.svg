@@ -1,4 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" fill="#1A1715"/>
-  <text x="16" y="22" text-anchor="middle" font-family="Jost,sans-serif" font-weight="200" font-size="16" fill="#FAF8F5" letter-spacing="1">TZ</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="#1A1715"/><g fill="none" stroke="#FAF8F5" stroke-width="3.2" stroke-linecap="square"><path d="M12 21h20M22 21v23"/><path d="M30 21h22L30 44h22"/></g></svg>

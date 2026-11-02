@@ -1,181 +1,333 @@
 {
   "lang": "fr",
   "dir": "ltr",
-  "langLabel": "FR",
+  "label": "FR",
+  "locale": "fr_FR",
   "meta": {
-    "title": "Tzach Zrihan | Organisateur de mariage en Israël — Précision, économies, sérénité",
-    "desc": "Tzach Zrihan est un coordinateur de mariage indépendant en Israël — le plus joyeux que vous rencontrerez. Suivi complet 5 à 10 mois, vraies économies, tranquillité totale le jour J.",
-    "og_title": "Tzach Zrihan | Organisateur de mariage Israël",
-    "og_desc": "Organisation de mariage haute précision en Israël, avec de vraies économies et beaucoup de chaleur.",
-    "keywords": "organisateur mariage Israël, wedding planner Israël, coordinateur mariage Israël, Tzach Zrihan, mariage destination Israël"
+    "title": "Tzach Zrihan | Organisateur de mariage en Israël",
+    "description": "Tzach Zrihan est organisateur de mariage indépendant en Israël. Il accompagne les couples pendant des mois, négocie avec la salle et les prestataires pour que vous ne payiez pas l’inutile, et gère le jour J.",
+    "legalTitle": "Mentions légales et confidentialité | Tzach Zrihan"
   },
-  "skip": "Passer",
+  "ui": {
+    "skip": "Passer",
+    "skipToContent": "Aller au contenu",
+    "menu": "Menu",
+    "close": "Fermer",
+    "language": "Langue",
+    "play": "Lire la vidéo",
+    "prev": "Photo précédente",
+    "next": "Photo suivante",
+    "waFloat": "M’écrire sur WhatsApp",
+    "credits": "Crédits",
+    "monthsWith": "mois d’accompagnement",
+    "openStory": "L’histoire de",
+    "viewPost": "Voir la publication sur Instagram",
+    "home": "Retour à l’accueil",
+    "rights": "Tous droits réservés",
+    "pause": "Mettre la vidéo en pause",
+    "resume": "Relancer la vidéo"
+  },
   "nav": {
     "story": "Mon histoire",
     "services": "Services",
     "weddings": "Mariages",
-    "testimonials": "Avis",
+    "testimonials": "Témoignages",
     "faq": "FAQ",
-    "contact": "On se rencontre"
+    "contact": "Faisons connaissance"
   },
-  "logo": {
-    "name": "TZACH ZRIHAN",
-    "sub": "WEDDING PRODUCTIONS"
+  "brand": {
+    "name": "Tzach Zrihan",
+    "sub": "Wedding Productions"
+  },
+  "intro": {
+    "line": "Tzach Zrihan · Wedding Productions"
   },
   "hero": {
-    "tag": "WEDDING PRODUCTIONS · ISRAËL",
-    "h1": "Le mariage dont vous avez toujours rêvé,\nsans le stress.",
-    "cta": "On se rencontre"
+    "tag": "Tzach Zrihan · Organisateur de mariage en Israël",
+    "title": "Le mariage dont vous avez toujours rêvé,\nsans stress ni mauvaise surprise.",
+    "cta": "Faisons connaissance"
   },
-  "intro_text": "WEDDING PRODUCTIONS · ISRAËL",
   "manifesto": {
-    "tag": "Mon histoire",
-    "h2": "Vous venez de vous fiancer ?\nL'émotion monte, et le brouillard aussi.",
-    "body": "Tout le monde vous donne un conseil différent, et vous ne savez pas par où commencer. Je suis là pour apporter de l'ordre, des économies et la sérénité d'esprit que vous méritez — avec beaucoup d'amour et une vraie amitié entre moi et les couples. Parce qu'à la fin, je ne suis pas seulement votre organisateur. Je suis votre ami tout au long de ce chemin.\n\nUn coordinateur de mariage indépendant — contrairement au coordinateur de la salle —, il travaille pour vous, pas pour le lieu. Il défend vos intérêts, négocie vos contrats et gère le jour J à vos côtés.",
-    "link": "En savoir plus sur moi"
+    "tag": "Vous êtes fiancés ?",
+    "title": "L’émotion monte.\nEt chacun vous dit autre chose.",
+    "text": "De l’ordre et de l’organisation, des économies et l’esprit tranquille, avec beaucoup d’amour et une vraie amitié entre les couples et moi. C’est comme ça qu’on arrive au mariage dont vous avez toujours rêvé : sans compromis, par étapes sûres, sans mauvaise surprise.",
+    "link": "Mon histoire"
   },
   "promises": {
     "tag": "Trois promesses",
     "items": [
       {
-        "num": "001",
-        "label": "DIYUK",
+        "label": "Diyuk",
         "title": "Précision",
-        "body": "Une production d'une grande précision — chaque détail, chaque prestataire, chaque minute. Rien ne passe à travers les mailles."
+        "text": "Une production d’une grande précision. Chaque prestataire, chaque horaire, chaque petit détail est prévu à l’avance."
       },
       {
-        "num": "002",
-        "label": "HISSAHON",
+        "label": "Hissakhon",
         "title": "Économies",
-        "body": "Je ne vous laisserai pas payer ce dont vous n'avez pas besoin. Nous négocions ensemble avec chaque prestataire."
+        "text": "Je ne vous laisserai pas payer ce dont vous n’avez pas besoin. Je négocie face aux prestataires à votre place."
       },
       {
-        "num": "003",
-        "label": "ROSH SHAKET",
+        "label": "Rosh shaket",
         "title": "Sérénité",
-        "body": "Le jour J — je gère tout. Vous dansez, vous riez, vous profitez. C'est mon travail."
+        "text": "Le jour J, c’est moi qui gère l’événement. Vous, vous profitez de votre mariage."
       }
     ]
   },
-  "stats": {
-    "tag": "En chiffres",
-    "h2": "De vraies économies.\nDu vrai temps ensemble.\nDes souvenirs pour la vie.",
-    "items": [
-      { "value": "150+", "label": "Mariages produits" },
-      { "value": "5–10", "label": "Mois d'accompagnement" },
-      { "value": "20–40%", "label": "D'économies en moyenne" },
-      { "value": "100%", "label": "Couples heureux" }
+  "about": {
+    "tag": "Mon histoire",
+    "title": "L’organisateur de mariage\nle plus joyeux que vous rencontrerez.",
+    "paras": [
+      "Je m’appelle Tzach. J’accompagne les couples des fiançailles jusqu’à la dernière danse : parfois cinq mois, parfois dix. Pendant ce temps, on construit le mariage ensemble, étape par étape, sans pression.",
+      "Je m’occupe des salles et des prestataires, je compare les devis et je pose les questions qu’on n’ose pas toujours poser. Et le jour du mariage, je suis là dès la première minute, du briefing de la houppa aux affaires que vous avez apportées de la maison."
     ],
-    "note": "* Chiffres à confirmer par le client avant la mise en ligne."
+    "definitionTitle": "Qu’est-ce qu’un organisateur de mariage indépendant ?",
+    "definition": "En Israël, le « mafik chatounot chitsoni » est un organisateur de mariage indépendant de la salle. Il travaille uniquement pour le couple : il aide à choisir la salle et les prestataires, négocie les prix, construit le budget et le déroulé de la soirée, puis dirige le mariage le jour J.",
+    "quote": "Le rôle d’un organisateur indépendant, c’est de penser aux détails auxquels vous n’auriez jamais pensé.",
+    "sign": "Tzach Zrihan",
+    "videoLabel": "Vous êtes fiancés ? Tzach explique comment ça se passe (en hébreu)"
+  },
+  "services": {
+    "tag": "Services",
+    "title": "Ce que je fais\npour vous.",
+    "items": [
+      {
+        "title": "Organisation complète",
+        "text": "De A à Z pendant les mois de préparation, avec un seul interlocuteur pour toutes vos questions."
+      },
+      {
+        "title": "Salle et prestataires",
+        "text": "Trouver le bon lieu et les bons prestataires, négocier, et économiser là où ça compte."
+      },
+      {
+        "title": "Planning et budget",
+        "text": "Le déroulé de la soirée, le menu (par exemple un menu restaurant sans temps morts) et un plan clair pour chaque étape."
+      },
+      {
+        "title": "Briefing de la houppa",
+        "text": "Une répétition calme de la cérémonie, pour arriver sous la houppa détendus et sûrs de chaque moment."
+      },
+      {
+        "title": "Gestion du jour J",
+        "text": "Prestataires, horaires, invités, et quelqu’un qui veille sur les affaires que vous avez apportées de la maison."
+      },
+      {
+        "title": "Mariages à part",
+        "text": "Mariage sur la plage, remariage, soirée « The 90’s are back ». Chaque idée a droit à sa propre production."
+      }
+    ]
   },
   "process": {
     "tag": "Comment ça marche",
-    "h2": "Quatre étapes\npour le mariage de vos rêves.",
+    "title": "Quatre étapes,\nzéro mauvaise surprise.",
     "steps": [
       {
-        "num": "01",
-        "title": "Première rencontre",
-        "body": "On définit ensemble votre rêve, votre budget, et ce qui compte vraiment pour vous."
+        "title": "La rencontre",
+        "text": "On parle du rêve, du budget et de ce qui compte vraiment pour vous."
       },
       {
-        "num": "02",
         "title": "Salle et prestataires",
-        "body": "Je vous guide, négocie pour vous, et m'assure que vous ne payez pas un shekel de trop."
+        "text": "On choisit ensemble, et je négocie pour que vous ne dépensiez pas un shekel de trop."
       },
       {
-        "num": "03",
-        "title": "Planification et suivi",
-        "body": "Des mois de préparation structurée — déroulé, menu, timing, briefing de la cérémonie."
+        "title": "Les mois de préparation",
+        "text": "Un suivi rapproché : planning, menu, déroulé de la soirée et briefing de la houppa."
       },
       {
-        "num": "04",
-        "title": "Le jour J",
-        "body": "J'arrive en premier et repars en dernier. Vous profitez de chaque instant. Tout est entre de bonnes mains."
+        "title": "Le grand jour",
+        "text": "Je dirige l’événement du début à la fin. Vous, vous dansez."
       }
     ]
   },
   "details": {
-    "h2": "Voir les détails\nauxquels vous n'auriez jamais pensé.",
-    "body": "Qui s'occupera des affaires que vous avez apportées de la maison ? Qui veillera à ce que le briefing de la chuppah se passe exactement comme prévu ? C'est ce que j'adore faire."
+    "title": "Voir les détails\nauxquels vous n’auriez jamais pensé.",
+    "text": "Mais qui s’occupera des affaires qu’on a apportées de la maison ? Moi, évidemment."
   },
-  "weddings_section": {
+  "weddings": {
     "tag": "Mariages",
-    "h2": "Chaque mariage,\nune histoire différente.",
-    "months_label": "mois d'accompagnement",
-    "view_more": "Voir tous les mariages",
-    "couples": [
-      { "id": "shir-tal", "names": "Shir & Tal", "location": "Centre, Israël", "months": 8 },
-      { "id": "eden-tevel", "names": "Eden & Tevel", "location": "Nord, Israël", "months": 10 },
-      { "id": "yuval-idan", "names": "Yuval & Idan", "location": "Israël", "months": 5 },
-      { "id": "limor-oded", "names": "Limor & Oded", "location": "Plage de Poleg, Netanya", "months": 8 },
-      { "id": "sivan-daniel", "names": "Sivan & Daniel", "location": "Israël", "months": 6 },
-      { "id": "ofir-or", "names": "Ofir & Or", "location": "Israël", "months": 7 }
-    ]
+    "title": "Chaque mariage,\nune autre histoire.",
+    "couples": {
+      "sivan-daniel": {
+        "names": "Sivan & Daniel",
+        "place": "Séance couple en forêt",
+        "story": "Une journée commencée dans la lumière dorée des arbres, terminée sur une piste de danse pleine."
+      },
+      "yuval-idan": {
+        "names": "Yuval & Idan",
+        "place": "Kav HaMaim",
+        "story": "J’ai accompagné Yuval et Idan pendant cinq mois, et leur mariage était magnifique."
+      },
+      "limor-oded": {
+        "names": "Limor & Oded",
+        "place": "Plage de Poleg",
+        "story": "Un second mariage après 13 ans de vie commune, sur la plage : branding personnalisé, buffet de viandes à volonté et une houppa aussi émouvante que joyeuse."
+      },
+      "digmi": {
+        "names": "Mr & Mrs Digmi",
+        "place": "L’allée de cyprès",
+        "story": "Un mariage blanc, épuré et précis, entre les cyprès."
+      },
+      "ofir-or": {
+        "names": "Ofir & Or",
+        "place": "The Wedding Day",
+        "story": "Les préparatifs à la maison, les amis au bord de la piscine, et le premier regard sur la pelouse."
+      },
+      "shachar-eyal": {
+        "names": "Shachar & Eyal",
+        "place": "Juste avant l’entrée",
+        "story": "Champagne, fous rires et pyramide de coupes. Merci pour ce privilège."
+      }
+    }
+  },
+  "months": {
+    "tag": "En chiffres",
+    "title": "Un mariage se prépare\nsur des mois, pas en une soirée.",
+    "unit": "mois",
+    "items": {
+      "eden-tevel": {
+        "names": "Eden & Tevel",
+        "quote": "Après dix mois, voir que tout était exactement comme prévu."
+      },
+      "shir-tal": {
+        "names": "Shir & Tal",
+        "quote": "Merci pour le privilège de produire votre mariage pendant huit mois."
+      },
+      "yuval-idan": {
+        "names": "Yuval & Idan",
+        "quote": "Je les ai accompagnés cinq mois, et leur mariage était magnifique."
+      }
+    },
+    "weddings": "mariages organisés",
+    "savings": "d’économies en moyenne par couple"
   },
   "testimonials": {
     "tag": "Témoignages",
-    "h2": "Ce qu'ils disent.",
-    "placeholder": "<!-- Ajouter ici les vrais témoignages des couples -->"
+    "title": "Ce que racontent les couples.",
+    "lian": {
+      "names": "Lian & Arnold",
+      "caption": "J’ai invité Lian et Arnold à raconter leur expérience. Partie 1 : les économies. (En hébreu)"
+    },
+    "more": "D’autres témoignages dans la story à la une « המלצות » sur Instagram"
   },
   "bts": {
     "tag": "Dans les coulisses",
-    "h2": "Moi et vos parents,\non va devenir amis.",
-    "body": "Beaucoup d'humour, beaucoup d'amour, et des détails auxquels vous n'auriez jamais pensé. C'est ce que j'apporte."
+    "title": "Vos parents et moi,\non va devenir amis.",
+    "text": "Beaucoup d’humour, beaucoup d’amour, et une foule de petits détails. Voilà à quoi ça ressemble de l’intérieur.",
+    "items": {
+      "parents": "Vos parents et moi",
+      "briefing": "Briefing de la houppa",
+      "details": "Les petits détails",
+      "order": "Ordre et organisation"
+    }
   },
   "faq": {
-    "tag": "Questions fréquentes",
-    "h2": "Tout ce que vous\nvouliez savoir.",
+    "tag": "FAQ",
+    "title": "Ce que tout le monde\nme demande.",
     "items": [
       {
-        "q": "Pourquoi faire appel à un coordinateur indépendant ?",
-        "a": "Contrairement au coordinateur fourni par la salle, un coordinateur indépendant travaille exclusivement pour vous. Il négocie les contrats dans votre intérêt, gère les prestataires, et est présent le jour J pour que tout se passe exactement comme prévu. <!-- À compléter avec la réponse approuvée par le client -->"
+        "q": "Pourquoi un organisateur indépendant si la salle a déjà un responsable ?",
+        "a": "Le responsable de la salle travaille pour la salle. Un organisateur indépendant travaille uniquement pour vous : il connaît les prestataires, compare les devis, négocie et protège votre budget, puis veille le jour J à ce que tout se passe à l’heure et comme prévu."
       },
       {
-        "q": "Combien coûte votre prestation ?",
-        "a": "<!-- À compléter avec la réponse approuvée par le client -->"
+        "q": "Combien de temps avant le mariage faut-il vous contacter ?",
+        "a": "Le plus tôt possible. J’accompagne en général les couples de cinq à dix mois avant le mariage. Cela laisse le temps de choisir la salle et les prestataires sereinement, et d’obtenir les meilleures conditions."
       },
       {
-        "q": "Combien de temps à l'avance faut-il vous contacter ?",
-        "a": "Le plus tôt est le mieux. J'accompagne les couples de 5 à 10 mois avant leur mariage, parfois davantage. Plus on anticipe, plus on a de choix, de meilleures conditions et moins de stress."
+        "q": "Comment nous faites-vous économiser ?",
+        "a": "Je sais ce dont vous avez vraiment besoin et ce qui est superflu, et je négocie face aux prestataires à votre place. Je ne vous laisserai pas payer l’inutile : on compare les offres, on renonce à ce qui ne compte pas pour vous et on investit dans ce qui compte."
       },
       {
-        "q": "Comment m'aidez-vous à économiser de l'argent ?",
-        "a": "<!-- À compléter avec la réponse approuvée par le client -->"
+        "q": "Combien coûte votre accompagnement ?",
+        "a": "Cela dépend de l’étendue de l’accompagnement et du type d’événement. Lors du premier rendez-vous, on définit vos besoins et vous recevez une proposition claire, sans petites lignes."
       },
       {
-        "q": "Travaillez-vous aussi pour les petits mariages ?",
-        "a": "<!-- À compléter avec la réponse approuvée par le client -->"
+        "q": "Peut-on organiser un mariage en Israël en vivant en France ?",
+        "a": "Oui. Une grande partie du travail se fait sur WhatsApp et en visio, et je m’occupe sur place des visites de salles et des rendez-vous avec les prestataires. Vous arrivez pour un mariage prêt."
       }
     ]
   },
   "contact": {
-    "tag": "On se rencontre",
-    "h2": "Parlons de\nvotre mariage.",
-    "body": "Un premier rendez-vous — sans engagement, avec beaucoup de sourires.",
+    "tag": "Faisons connaissance",
+    "title": "Parlez-moi\nde votre mariage.",
+    "text": "Un premier rendez-vous, sans engagement. Remplissez quelques champs : le message s’ouvre dans votre WhatsApp, prêt à être envoyé.",
     "fields": {
-      "bride": "Prénom de la mariée",
-      "groom": "Prénom du marié",
+      "names": "Vos prénoms",
+      "namesHint": "ex. Noa & Itay…",
       "date": "Date approximative",
-      "region": "Région / ville",
-      "guests": "Nombre d'invités",
+      "region": "Région",
+      "guests": "Nombre d’invités",
       "budget": "Budget indicatif",
       "venue": "Salle déjà réservée ?",
-      "venue_yes": "Oui",
-      "venue_no": "Pas encore",
-      "message": "Parlez-moi un peu de vous",
-      "submit": "Envoyer via WhatsApp"
+      "venueYes": "Oui",
+      "venueNo": "Pas encore",
+      "message": "Ce que vous aimeriez que je sache",
+      "submit": "Envoyer sur WhatsApp",
+      "required": "Vos prénoms, pour commencer"
     },
-    "wa_message": "Bonjour Tzach ! Nous sommes {bride} et {groom}, nous nous marions vers {date} dans la région {region}. {guests} invités, budget {budget}. Salle : {venue}. {message}"
+    "regions": [
+      "Nord",
+      "Haïfa et environs",
+      "Sharon",
+      "Centre / Tel-Aviv",
+      "Jérusalem",
+      "Shfela",
+      "Sud",
+      "Autre / étranger"
+    ],
+    "budgets": [
+      "Jusqu’à 100 000 ₪",
+      "100 000 – 200 000 ₪",
+      "200 000 – 300 000 ₪",
+      "Plus de 300 000 ₪",
+      "Pas encore défini"
+    ],
+    "waGreeting": "Bonjour Tzach ! Nous avons trouvé votre site et aimerions faire connaissance.",
+    "direct": "Ou directement",
+    "waLabels": {
+      "names": "Prénoms",
+      "date": "Date",
+      "region": "Région",
+      "guests": "Invités",
+      "budget": "Budget",
+      "venue": "Salle réservée"
+    }
   },
   "footer": {
-    "tagline": "Le coordinateur de mariage le plus joyeux que vous rencontrerez.",
-    "legal": "Mentions légales",
-    "rights": "Tous droits réservés"
+    "tagline": "L’organisateur de mariage le plus joyeux que vous rencontrerez.",
+    "legal": "Mentions légales"
+  },
+  "legal": {
+    "title": "Mentions légales et confidentialité",
+    "sections": [
+      {
+        "h": "Éditeur",
+        "p": "Ce site appartient à Tzach Zrihan, organisateur de mariage (Tzach Zrihan Wedding Productions). Contact : WhatsApp +972 54-981-4740."
+      },
+      {
+        "h": "Vos informations",
+        "p": "Le formulaire n’enregistre rien sur ce site. Les informations saisies composent un message qui s’ouvre dans votre propre application WhatsApp, et c’est vous qui décidez de l’envoyer. Elles servent uniquement à vous répondre."
+      },
+      {
+        "h": "Cookies",
+        "p": "Ce site n’utilise aucun cookie de suivi ni de publicité. Votre navigateur garde seulement en mémoire la langue choisie et le fait d’avoir vu l’introduction."
+      },
+      {
+        "h": "Photos et vidéos",
+        "p": "Les photos et vidéos proviennent de mariages organisés par Tzach. Les photographes sont crédités à côté de chaque mariage. Merci de ne pas les réutiliser sans autorisation."
+      },
+      {
+        "h": "Hébergement",
+        "p": "Le site est hébergé par Vercel Inc. Les polices sont chargées depuis Google Fonts."
+      }
+    ]
   },
   "alts": {
-    "portrait": "Tzach Zrihan, coordinateur de mariage",
-    "hero": "Un beau mariage en Israël",
-    "logo": "Tzach Zrihan — Wedding Productions"
-  },
-  "wa_float_label": "Écrivez-moi"
+    "hero": "Des mariés enlacés au coucher du soleil, extrait d’un film de mariage organisé par Tzach",
+    "portrait": "Tzach Zrihan, organisateur de mariage, avec son planning à la main",
+    "precision": "Les mariés dans une allée de cyprès parfaitement alignés",
+    "savings": "Sivan et Daniel front contre front dans la forêt",
+    "calm": "Sivan et Daniel dans les rayons de lumière entre les arbres",
+    "chuppah": "Une houppa blanche et les tables dressées avant la cérémonie, en noir et blanc",
+    "briefing": "Tzach explique le briefing de la houppa aux mariés",
+    "gallery": "Photo du mariage de"
+  }
 }

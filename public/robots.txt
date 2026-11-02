@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
+
 Sitemap: https://tzach-zrihan.vercel.app/sitemap.xml
